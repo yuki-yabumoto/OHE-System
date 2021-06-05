@@ -1,6 +1,5 @@
 #/bin/bash
 
-#gem install rails
 /apps/ohe/bin/bundle install
 
 /etc/init.d/mysql start
