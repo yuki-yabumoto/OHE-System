@@ -1,5 +1,7 @@
 FROM ruby:3.0.1
 
+RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends nodejs mariadb-server mariadb-client
 
