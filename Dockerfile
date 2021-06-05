@@ -1,7 +1,7 @@
 FROM ruby:3.0.1
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends node.js mariadb-server mariadb-client
+    && apt-get install -y --no-install-recommends nodejs mariadb-server mariadb-client
 
 RUN apt-get install -y curl
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -10,6 +10,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get install -y yarn
 
 RUN gem install rails
+
+RUN apt install imagemagick
 
 COPY ./setup.sh /tmp/setup.sh
 RUN chmod 755 /tmp/setup.sh
