@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root "top#index", as: :index
   get "login" => "sessions#new", as: :login
   resource :session, only: [ :create, :destroy ]
-  resource :user
+  resource :users
+  resource :clothes
 end
