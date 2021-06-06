@@ -214,6 +214,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2021.1)
+      tzinfo (>= 1.0.0)
     valid_email2 (3.6.1)
       activemodel (>= 3.2)
       mail (~> 2.5)
@@ -261,6 +263,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   turbolinks (~> 5)
+  tzinfo-data
   valid_email2
   web-console (>= 4.1.0)
   webdrivers
