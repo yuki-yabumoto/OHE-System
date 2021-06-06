@@ -1,0 +1,30 @@
+<div class="notes">
+  <span class="mark">*</span>印の付いた項目は入力必須です
+</div>
+<div>
+  <p>性別</p>
+  <%= f.radio_button :gender, :male %>
+  <%= f.label :gender, "男性" %>
+  <%= f.radio_button :gender, :female %>
+  <%= f.label :gender, "女性" %>
+</div>
+<div id="datetime">
+  <p>外出する時間帯</p>
+  <p>
+    <%= f.datetime_field :from_time, class: "form-control" %>
+    <p>~</p>
+    <%= f.datetime_field :to_time, class: "form-control" %>
+  </p>
+</div>
+<div id="favorite">
+  <%= f.label "好みの色" %>
+  <%= f.select :favorite_color,
+      [["白", 0], ["黒", 1], ["赤", 2], ["青", 3], ["黄", 4], ["緑", 5], ["柄もの", 6], ["ベージュ", 7]]
+  %>
+</div>
+<div>
+  <%= f.label "好みのタイプ" %>
+  <%= f.select :favorite_type,
+      [["カジュアル系", 0], ["ロック系", 1], ["ストリート系", 2], ["ガーリッシュ系", 3]]
+  %>
+</div>
