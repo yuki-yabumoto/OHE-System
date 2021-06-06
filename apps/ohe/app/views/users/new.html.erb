@@ -2,9 +2,9 @@
 <h1><%= @title %></h1>
 
 <div id="generic-form">
-  <%= form_with model: @user, url: :new_user do |f| %>
-    <%= render "form", f: f %>
-    <div class="buttons">
+  <%= form_with model: @user, url: :users do |f| %>
+    <%= render "create_account", f: f %>
+    <div>
       <%= f.submit "登録" %>
       <% link_to "キャンセル", :index %>
     </div>

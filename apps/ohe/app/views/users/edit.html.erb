@@ -1,0 +1,12 @@
+<% @title = "ユーザー情報入力" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_with model: @user, url: :users do |f| %>
+    <%= render "edit_account", f: f %>
+    <div class="buttons">
+      <%= f.submit "更新" %>
+      <%= link_to "キャンセル", :index %>
+    </div>
+  <% end %>
+</div>
