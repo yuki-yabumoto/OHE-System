@@ -1,3 +1,10 @@
+##
+## File Name    : 20210604042930_create_users.rb
+## Version      : 1.0
+## Designer     : 籔本悠紀
+## Purpose      : Userモデルのマイグレーションファイル
+##
+
 class CreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
