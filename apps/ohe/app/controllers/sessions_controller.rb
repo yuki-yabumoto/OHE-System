@@ -1,12 +1,20 @@
+##
+## File Name    : sessions_controller.rb
+## Version      : v1.0
+## Designer     : 籔本悠紀
+## Date         : 2021.06.06
+## Purpose      : セッションのコントローラー
+##
+
 class SessionsController < Base
-  def new
-    if current_user
-      redirect_to :root
-    else
-      @form = LoginForm.new
-      render action: "new"
-    end
-  end
+  # def new
+  #   if current_user
+  #     redirect_to :root
+  #   else
+  #     @form = LoginForm.new
+  #     render action: "new"
+  #   end
+  # end
 
   def create
     @form = LoginForm.new(params[:login_form])
