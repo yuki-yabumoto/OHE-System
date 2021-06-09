@@ -1,21 +1,31 @@
+<%#
+  File Name   : layout/application.html.erb
+  Version     : v1.0
+  Designer    : 籔本悠紀
+  Date        : 2021.06.08
+  Purpose     : 全体のレイアウトを構成
+%>
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= document_title %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <div id="background-mask">
+    <head>
+      <title><%= document_title %></title>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <div id="wrapper">
-      <%= render "shared/header" %>
-      <div id="container">
-        <%= yield %>
+    <body>
+      <div id="wrapper">
+        <%= render "shared/header" %>
+        <div id="container">
+          <%= yield %>
+        </div>
       </div>
-   </div>
-  </body>
+    </body>
+  </div>
 </html>
