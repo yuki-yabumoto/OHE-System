@@ -6,8 +6,9 @@
 ** Purpose      : scssで使用する色を変数に設定
  */
 
-/* グレー系 */
+/* 黒系 */
 
+$black: #000000;
 $dark_gray: 666666;
 $gray: #cccccc;
 
@@ -21,3 +22,9 @@ $very_dark_cyan: darken($dark_cyan, 25%);
 
 /* 赤系 */
 $red: #cc0000;
+
+/* 青系 */
+$blue: #0000ff;
+$light_blue: #0066ff;
+$very_light_blue: #00ccff;
+$sky_blue: rgba(0, 255, 255, 0.5)
