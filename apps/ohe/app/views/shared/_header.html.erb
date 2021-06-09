@@ -8,6 +8,7 @@
 
 <header>
   <span class="logo-mark">OHEシステム</span>
+  <div id="sessions">
   <%=
     if current_user
       link_to "ログアウト", :session, method: :delete
@@ -22,4 +23,5 @@
       link_to "新規登録", :new_users
     end
   %>
+  </div>
 </header>
