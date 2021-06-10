@@ -1,27 +1,54 @@
-@import "colors";
-@import "dimentions";
+/*
+** File Name    : layout.scss
+** Version      : 1.0
+** Designer     : 籔本悠紀
+** Date         : 2021.06.06
+** Purpose      : 基本レイアウトで使用するスタイルシート
+ */
 
-html, body {
+@import "colors";
+@import "dimensions";
+
+html {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-image: image-url('clear_sky.jpg');
+  background-size: cover;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Meiryo UI";
+}
+
+div#background-mask {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
+  height: 100%;
+}
+
 div#wrapper {
   position: relative;
   box-sizing: border-box;
   min-height: 100%;
   margin: 0 auto;
   padding-bottom: 48px;
-  background-color: $gray;
 }
+
 header {
   padding: 5px;
-  background-color: $dark_cyan;
-  color: $gray;
+  background-color: rgba(255, 255, 255, 0);
+  color: $black;
+  text-align: center;
   span.logo-mark {
-    font-weight: bold;
+    font-size: xx-large;
+    width: 100%;
+    text-align: center;
   }
-  a {
+  div#sessions {
     float: right;
     color: $very_light_gray;
     margin-left: $wide;

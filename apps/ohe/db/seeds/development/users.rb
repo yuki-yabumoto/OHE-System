@@ -1,3 +1,11 @@
+##
+## File Name  : seeds/development/users.rb
+## Version    : 1.0
+## Designer   : 籔本悠紀
+## Purpose    : Userモデルのシード情報
+##
+
 User.create!(
-  email: "taro@example.com"
+  email: "test@example.com",
+  password: "password"
 )

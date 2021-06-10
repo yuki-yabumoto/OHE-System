@@ -1,14 +1,22 @@
+/*
+** File Name    : container.scss
+** Version      : 1.0
+** Designer     : 籔本悠紀
+** Date         : 2021.06.04
+** Purpose      : divのcontainerクラスのスタイルシート
+ */
+
 @import "colors";
 
 div#wrapper {
-  div#container {
-    h1 {
-      margin: 0;
-      padding: 9px 6px;
-      font-size: 16px;
-      font-weight: normal;
-      background-color: $very_dark_cyan;
-      color: $gray;
+    div#container {
+      h1 {
+        margin: 0;
+        padding: 9px 6px;
+        font-size: 16px;
+        font-weight: normal;
+        background-color: $very_dark_cyan;
+        color: $gray;
+      }
     }
-  }
 }

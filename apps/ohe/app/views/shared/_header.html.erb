@@ -1,5 +1,14 @@
+<%#
+  File Name   : shared/_header.html.erb
+  Version     : 1.0
+  Designer    : 籔本悠紀
+  Date        : 2021.06.05
+  Purpose     : ヘッダーの表示
+%>
+
 <header>
   <span class="logo-mark">OHEシステム</span>
+  <div id="sessions">
   <%=
     if current_user
       link_to "ログアウト", :session, method: :delete
@@ -9,9 +18,10 @@
   %>
   <%=
     if current_user
-      link_to "アカウント編集", :edit_account
+      link_to "アカウント編集", :edit_users
     else
-      link_to "新規登録", :new_user
+      link_to "新規登録", :new_users
     end
   %>
+  </div>
 </header>
