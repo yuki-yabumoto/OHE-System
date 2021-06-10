@@ -19,11 +19,11 @@ class ClothesController < Base
   
   def edit
     @clothe = Clothe.find(params[:id]);
-end
+  end
 
-def destroy
-    @clothe = Clothe.find(parms[:id]);
-    @clothe.destroy;
-end
-
+  def destroy
+    clothe = Clothe.find(parms[:id]);
+    clothe.destroy!;
+    redirect_to :clothes_show;
+  end
 end
