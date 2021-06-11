@@ -1,3 +1,10 @@
+##
+## File Name    : seeds.rb
+## Version      : 1.0
+## Designer     : 籔本悠紀
+## Purpose      : データベースの各テーブルにシードを追加する
+##
+
 table_names = %w( users )
 
 table_names.each do |table_name|

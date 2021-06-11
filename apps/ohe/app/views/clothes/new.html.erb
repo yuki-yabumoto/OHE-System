@@ -1,0 +1,20 @@
+<%#
+  File Name     : clothes/new.html.erb
+  Version       : 1.0
+  Designer      : 籔本悠紀
+  Date          : 2021.06.06
+  Purpose       : 新しく服を登録する画面
+%>
+
+<% @title = "服を追加" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_with model: @clothe, url: :clothes do |f| %>
+    <%= render "add_clothe", f: f %>
+    <div>
+      <%= f.submit "登録" %>
+      <% link_to "キャンセル", :index %>
+    </div>
+  <% end %>
+</div>

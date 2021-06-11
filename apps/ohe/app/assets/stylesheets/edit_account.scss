@@ -1,0 +1,17 @@
+/*
+** File Name    : edit_account.scss
+** Version      : 1.0
+** Designer     : 籔本悠紀
+** Date         : 2021.06.04
+** Purpose      : アカウント編集ページで使用するスタイルシート
+ */
+
+@import "colors";
+@import "dimensions";
+
+#datetime {
+  p {
+    padding: $moderate;
+    display: inline-block;
+  }
+}
