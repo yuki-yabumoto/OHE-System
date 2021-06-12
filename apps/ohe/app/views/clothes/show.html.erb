@@ -1,0 +1,68 @@
+<%#
+  File Name     : clothes/show.html.erb
+  Version       : 1.0
+  Designer      : 籔本悠紀
+  Date          : 2021.06.06
+  Purpose       : 登録した服情報の一覧を表示する画面
+%>
+
+<%= @title = "登録済の服の一覧"  %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "服を追加", :new_clothes %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>種類</th>
+      <th>色</th>
+      <th>ジャンル</th>
+      <th>画像</th>
+    </tr>
+    <% @clothes.each do |c| %>
+      <tr>
+        <td>
+          <%=
+            case c.kind
+            when 0 then "トップス(半袖)"
+            when 1 then "トップス(長袖)"
+            when 2 then "アウター(薄手)"
+            when 3 then "アウター(厚手)"
+            when 4 then "シューズ"
+            when 5 then "ボトム"
+            when 6 then "アクセサリー"
+          %>
+        </td>
+        <td>
+          <%=
+            case c.color
+            when 0 then "白"
+            when 1 then "黒"
+            when 2 then "赤"
+            when 3 then "青"
+            when 4 then "黄"
+            when 5 then "緑"
+            when 6 then "柄物"
+            when 7 then "ベージュ"
+          %>
+        </td>
+        <td>
+          <%=
+            case c.type
+            when 0 then "カジュアル系"
+            when 1 then "ロック系"
+            when 2 then "ストリート系"
+            when 3 then "ガーリッシュ系"
+          %>
+        </td>
+        <td>c.image</td>
+        <td class="actions">
+          <%= link_to "編集", [ :edit_clothes, c ] %>
+          <%= link_to "削除", [ :destroy_clothes, c] %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
