@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_06_05_051200) do
     t.string "email", null: false
     t.string "password"
     t.integer "gender"
+    t.string "place"
     t.date "from_time"
     t.date "to_time"
     t.integer "favorite_color"

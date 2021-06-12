@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :email, null: false
       t.string :password
       t.integer :gender
+      t.string :place
       t.date :from_time
       t.date :to_time
       t.integer :favorite_color
