@@ -17,13 +17,13 @@ class ClothesController < Base
     end
     
     def edit
-      @clothe = Clothe.find(params[:id]);
+      @clothe = Clothe.find(params[:id])
     end
   
     def destroy
-      clothe = Clothe.find(parms[:id]);
-      clothe.destroy!;
-      redirect_to :clothes_show;
+      clothe = Clothe.find(parms[:id])
+      clothe.destroy!
+      redirect_to :clothes_show
     end
 end
   
