@@ -12,9 +12,8 @@ class ClothesController < Base
     end
   
     def show
-      user = User.find(params[:id])
-      @clothes = Clothe.where(user_id: user.id)
-      redirect_to [:show_clothes, user]
+      clothe = Clothe.find(params[:id])
+      redirect_to [ :edit, :user, clothe ]
     end
     
     def edit
