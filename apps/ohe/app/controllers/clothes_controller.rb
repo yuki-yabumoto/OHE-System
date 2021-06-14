@@ -7,6 +7,7 @@
 ##
 
 class ClothesController < Base
+    
     def new
       @clothe = Clothe.new
     end
@@ -26,5 +27,6 @@ class ClothesController < Base
       clothe.destroy!;
       redirect_to :clothes_show;
     end
+
 end
   
