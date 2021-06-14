@@ -1,2 +1,3 @@
 class Coordinate < ApplicationRecord
+
 end

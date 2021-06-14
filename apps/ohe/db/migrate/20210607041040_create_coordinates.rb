@@ -5,7 +5,7 @@ class CreateCoordinates < ActiveRecord::Migration[6.1]
       t.bigint :bottoms
       t.bigint :outer
       t.bigint :shoes
-      t.bigint :accessories
+      t.bigint :accessory
 
       t.timestamps
     end
