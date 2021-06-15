@@ -42,7 +42,7 @@ class SuggestCoordinationController < ApplicationController
             tops = ClothesInfo.where(user_id: id, clothes_type: 'LongSleevesTops')
             outer = ClothesInfo.where(user_id: id, clothes_type: 'ThickOuter')
         elsif @discomfort_index < 65 then
-            if weather == 'Snow' or weather = 'Rain' then
+            if weather == 3 or weather = 2 then
                 #トップス(長袖)、アウター(厚手)
                 tops = ClothesInfo.where(user_id: id, clothes_type: 'LongSleevesTops')
                 outer = ClothesInfo.where(user_id: id, clothes_type: 'ThickOuter')
