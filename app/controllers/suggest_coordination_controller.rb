@@ -14,6 +14,11 @@ class SuggestCoordinationController < ApplicationController
         weather = 0
         id = 1
 
+        if temperature == nil or humidity == nil or weather == nil or id == nil then    
+            @e2 = '天気情報が取得できませんでした。'
+            return 0
+        end
+
         #C7から気温(temperature)と湿度(humidity)を受け取り不快指数(discomfort_index)を計算
         @discomfort_index = 0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3
         
@@ -37,7 +42,7 @@ class SuggestCoordinationController < ApplicationController
             tops = ClothesInfo.where(user_id: id, clothes_type: 'LongSleevesTops')
             outer = ClothesInfo.where(user_id: id, clothes_type: 'ThickOuter')
         elsif @discomfort_index < 65 then
-            if weather == 'Snow' or weather = 'Rain' then
+            if weather == 3 or weather = 2 then
                 #トップス(長袖)、アウター(厚手)
                 tops = ClothesInfo.where(user_id: id, clothes_type: 'LongSleevesTops')
                 outer = ClothesInfo.where(user_id: id, clothes_type: 'ThickOuter')
@@ -182,18 +187,21 @@ class SuggestCoordinationController < ApplicationController
 
         @coordination_final = temp[0]
 
-        @tops = @coordination_final.tops.clothes_type
-        @tops_color = @coordination_final.tops.clothes_color
-        @outer = @coordination_final.outer.clothes_type
-        @outer_color = @coordination_final.outer.clothes_color
-        @bottoms = @coordination_final.bottoms.clothes_type
-        @bottoms_color = @coordination_final.bottoms.clothes_color
-        @accesary = @coordination_final.accesary.clothes_type
-        @accesary_color = @coordination_final.accesary.clothes_color
-        @shoes = @coordination_final.shoes.clothes_type
-        @shoes_color = @coordination_final.shoes.clothes_color
+        if @coodination_final == nil then
+            @e1 = '服の登録が十分にできていません。服を登録してください。'
+        else 
+            @tops = @coordination_final.tops.clothes_type
+            @tops_color = @coordination_final.tops.clothes_color
+            @outer = @coordination_final.outer.clothes_type
+            @outer_color = @coordination_final.outer.clothes_color
+            @bottoms = @coordination_final.bottoms.clothes_type
+            @bottoms_color = @coordination_final.bottoms.clothes_color
+            @accesary = @coordination_final.accesary.clothes_type
+            @accesary_color = @coordination_final.accesary.clothes_color
+            @shoes = @coordination_final.shoes.clothes_type
+            @shoes_color = @coordination_final.shoes.clothes_color
+        end
 
     end
 
 end
-
