@@ -90,6 +90,11 @@ class SuggestCoordinationController < ApplicationController
         shoes = ClothesInfo.where(user_id: id, clothes_type: 'Shoes')
         accesary = ClothesInfo.where(user_id: id, clothes_type: 'Accesary')
         
+        if tops.count == 0 or outer.count == 0 or bottoms.count == 0 or shoes.count == 0 or accesary.count == 0 then
+            @e1 = '服の登録が十分にできていません。服を登録してください。'
+            return 0
+        end
+        
         #コーディネート候補の作成と投票
         for i in 0...bottoms.count
             for j in 0...shoes.count
