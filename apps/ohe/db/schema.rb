@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_051200) do
+ActiveRecord::Schema.define(version: 2021_06_12_101641) do
 
   create_table "clothes", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
@@ -20,6 +20,29 @@ ActiveRecord::Schema.define(version: 2021_06_05_051200) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+  end
+
+  create_table "coordinates", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "tops"
+    t.bigint "bottoms"
+    t.bigint "outer"
+    t.bigint "shoes"
+    t.bigint "accessory"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tag_maps", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "clothe_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
