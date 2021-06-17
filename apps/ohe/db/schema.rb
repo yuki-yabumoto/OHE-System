@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_101641) do
     t.string "image"
   end
 
+<<<<<<< HEAD
   create_table "coordinates", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "tops"
     t.bigint "bottoms"
@@ -32,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_06_12_101641) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+=======
+>>>>>>> yabumoto/add_tag_data
   create_table "tag_maps", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "clothe_id"
     t.bigint "tag_id"
