@@ -14,6 +14,16 @@ class ClothesController < Base
   def show
     user = User.find(params[:id])
     @clothes = Clothe.where(user_id: user.id)
-    redirect_to [:show_clothes, user]
+    redirect_to index
   end
+
+  def create
+    @clothe = Clothe.new(params[:id])
+    @clothe.save
+    redirect_to :index
+  end
+
+
+
+
 end
