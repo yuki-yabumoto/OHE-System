@@ -7,4 +7,5 @@
 ##
 
 class User < ApplicationRecord
+  has_many :clothes, class_name: "Clothe", dependent: :destroy
 end
