@@ -1,9 +1,9 @@
 class CoordinateController < ApplicationController
 
     def show
-        user = User.find(params[:id])
-        @coordinates = Coordinate.where(user_id: user.id) 
-        #user_idが入力されたidと同じだった場合、coordinateモデルからとってくる
+        @coordinates.image = "#{@coordinates.id}.jpg"
+        image = params[:image_file]
+        File.binwrite("public/#{@coordinates.image}",image.read)
     end
 
 end
