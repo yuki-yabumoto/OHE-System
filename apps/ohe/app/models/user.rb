@@ -24,10 +24,12 @@ class User < ApplicationRecord
   def getWeatherForecast
     api_key = "db5db357d87b4994af16ed201cd5faaf"
     base_url = "http://api.openweathermap.org/data/2.5/forecast"
-    place = "Tokyo" #ユーザ情報から入力
+
+    #ユーザ情報から入力された場所
+    place = self.place
 
     #インデント無しの読みにくい形
-    response = OpenURI.open_uri(base_url + "?q=#{:place},jp&APPID=#{api_key}")
+    response = OpenURI.open_uri(base_url + "?q=#{place},jp&APPID=#{api_key}")
 
     #JSON形式からrubyオブジェクトに変換してから読みやすい形のJSON形式に変換
     #puts JSON.pretty_generate(JSON.parse(response.read))
@@ -35,8 +37,8 @@ class User < ApplicationRecord
     forecasts = JSON.parse(JSON.pretty_generate(JSON.parse(response.read))) #hashに変換
 
     # from_timeとto_timeを3時間単位に丸める
-    from_time = Time.at((:from_time.to_time.to_i / (3600 * 3)).round * (3600 * 3))
-    to_time = Time.at((:to_time.to_time.to_i / (3600 * 3)).round * (3600 * 3))
+    from_time = Time.at((self.from_time.to_time.to_i / (3600 * 3)).round * (3600 * 3))
+    to_time = Time.at((self.to_time.to_time.to_i / (3600 * 3)).round * (3600 * 3))
 
     weather_icon_hash =
       { "01" => 0, "02" => 1, "03" => 2, "04" => 3,
@@ -55,8 +57,8 @@ class User < ApplicationRecord
     end
 
     # 返り値(気温，湿度，天気を入れたハッシュ)
-    { :min_temperature => temperature_list.min,
-      :max_humidity => humidity_list.max,
-      :weather => weather_list.max }
+    return { :min_temperature => temperature_list.min,
+             :max_humidity => humidity_list.max,
+             :weather => weather_list.max }
   end
 end
