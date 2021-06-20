@@ -18,6 +18,7 @@ class User < ApplicationRecord
     elsif raw_password.nil?
       self.password = nil
     end
+  end
 
   # ユーザが指定した都道府県と時間帯の天気，気温，湿度をハッシュにして返す
   def getWeatherForecast
