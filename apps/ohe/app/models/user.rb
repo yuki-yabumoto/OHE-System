@@ -7,6 +7,8 @@
 ##
 
 class User < ApplicationRecord
+  has_many :clothes, class_name: "Clothe", dependent: :destroy
+
   def hashed_password=(raw_password)
     if raw_password.kind_of?(String)
       self.password = BCrypt::Password.create(raw_password)
