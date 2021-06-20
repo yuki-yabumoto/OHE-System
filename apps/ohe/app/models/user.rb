@@ -1,8 +1,8 @@
 ##
 ## File Name    : user.rb
-## Version      : v1.0
-## Designer     : 籔本悠紀, 京増ほのか(天気情報取得)
-## Date         : 2021.06.06
+## Version      : v1.2
+## Designer     : 籔本悠紀,中森楓太, 京増ほのか(天気情報取得)
+## Date         : 2021.06.15
 ## Purpose      : Userモデルの定義
 ##
 
@@ -10,6 +10,15 @@ require "json"
 require "open-uri"
 
 class User < ApplicationRecord
+  has_many :clothes, class_name: "Clothe", dependent: :destroy
+
+  def hashed_password=(raw_password)
+    if raw_password.kind_of?(String)
+      self.password = BCrypt::Password.create(raw_password)
+    elsif raw_password.nil?
+      self.password = nil
+    end
+
   # ユーザが指定した都道府県と時間帯の天気，気温，湿度をハッシュにして返す
   def getWeatherForecast
     api_key = "db5db357d87b4994af16ed201cd5faaf"
