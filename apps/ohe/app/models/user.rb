@@ -1,7 +1,7 @@
 ##
 ## File Name    : user.rb
-## Version      : v1.2
-## Designer     : 籔本悠紀,中森楓太, 京増ほのか(天気情報取得)
+## Version      : v2.0
+## Designer     : 籔本悠紀, 中森楓太, 京増ほのか
 ## Date         : 2021.06.15
 ## Purpose      : Userモデルの定義
 ##
