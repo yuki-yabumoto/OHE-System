@@ -12,6 +12,7 @@ class Clothe < ApplicationRecord
   def edit
     @clothes = clothes.find()
   end
+end
 
 #   def create
 #     kind = params[:kind]
@@ -34,4 +35,4 @@ class Clothe < ApplicationRecord
 #   clothes_geer =
 #   clothes_picture =
 #
-# }
+#
