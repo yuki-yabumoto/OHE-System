@@ -1,12 +1,21 @@
 ##
 ## File Name    : user.rb
-## Version      : v1.0
-## Designer     : 籔本悠紀,田中航生
-## Date         : 2021.06.06
+## Version      : v1.1
+## Designer     : 籔本悠紀,中森楓太,田中航生
+## Date         : 2021.06.15
 ## Purpose      : Userモデルの定義,validatesの追加
 ##
 
 class User < ApplicationRecord
+  has_many :clothes, class_name: "Clothe", dependent: :destroy
+
+  def hashed_password=(raw_password)
+    if raw_password.kind_of?(String)
+      self.password = BCrypt::Password.create(raw_password)
+    elsif raw_password.nil?
+      self.password = nil
+    end
+  end
   VALID_EMAIL_REGEX = /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /\A[\w\-]+\z/
   validates :email, uniqueness: true
