@@ -1,9 +1,9 @@
 ##
 ## File Name    : users_controller.rb
 ## Version      : 1.0
-## Designer     : 籔本悠紀
-## Date         : 2021.06.06
-## Purpose      : Userのコントローラー
+## Designer     : 籔本悠紀,中森楓太
+## Date         : 2021.06.21
+## Purpose      : Userのコントローラー,パスワードの暗号化
 ##
 
 class UsersController < Base
@@ -13,5 +13,15 @@ class UsersController < Base
 
   def edit
     @user = current_user
+  end
+
+  def create
+    @user = User.new(params[:user])
+    @user.hashed_password = params[:user][:password]
+    if @user.save
+      redirect_to :login
+    else
+      render action:"new"
+    end
   end
 end
