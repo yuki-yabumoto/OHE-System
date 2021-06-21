@@ -62,7 +62,6 @@ class Coordinate < ApplicationRecord
         elsif i < (@bottoms.count-1) then voting(i+1, 0, 0, 0, 0)
         else return 0 end
     end
-    
     def suggest(temperature, humidity, weather, id)
         #C7から気温(temperature)と湿度(humidity)を受け取り不快指数(discomfort_index)を計算
         if temperature == nil or humidity == nil or weather == nil or id == nil then    
