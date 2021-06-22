@@ -1,9 +1,10 @@
 ##
 ## File Name    : user.rb
+
 ## Version      : v1.1
 ## Designer     : 籔本悠紀,中森楓太,田中航生
 ## Date         : 2021.06.15
-## Purpose      : Userモデルの定義,validatesの追加
+## Purpose      : Userモデルの定義
 ##
 
 class User < ApplicationRecord
@@ -14,6 +15,11 @@ class User < ApplicationRecord
     elsif raw_password.nil?
       self.password = nil
     end
+  end
+
+  # ユーザー認証
+  def authenticate(unencrypted_password)
+    BCrypt::Password.new(self.password).is_password?(unencrypted_password) && self
   end
 
   VALID_EMAIL_REGEX = /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i
@@ -27,4 +33,5 @@ class User < ApplicationRecord
   validates :to_time, presence: true, on: :update
   validates :favorite_color, presence: true, on: :update
   validates :favorite_type, presence: true, on: :update
+
 end
