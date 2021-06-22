@@ -7,14 +7,14 @@
 ##
 
 class SessionsController < Base
-  # def new
-  #   if current_user
-  #     redirect_to :root
-  #   else
-  #     @form = LoginForm.new
-  #     render action: "new"
-  #   end
-  # end
+   def new
+     if current_user
+       redirect_to :index
+     else
+       @form = LoginForm.new
+       render action: "new"
+     end
+   end
 
   def create
     @form = LoginForm.new(params[:login_form])
@@ -24,7 +24,7 @@ class SessionsController < Base
     end
     if user
       session[:user_id] = user.id
-      redirect_to :root
+      redirect_to :index
     else
       render action: "new"
     end
@@ -32,6 +32,6 @@ class SessionsController < Base
 
   def destroy
     session.delete(:user_id)
-    redirect_to :root
+    redirect_to :index
   end
 end
