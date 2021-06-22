@@ -3,7 +3,7 @@
 ## Version      : 1.1
 ## Designer     : 籔本悠紀,中森楓太,田中航生
 ## Date         : 2021.06.21
-## Purpose      : Userのコントローラー,create文とupdate文の追加
+## Purpose      : Userのコントローラー
 ##
 
 class UsersController < Base
@@ -11,7 +11,7 @@ class UsersController < Base
     @user = User.new
   end
   def create
-    @user=User.new(params[:user])
+    @user = User.new(params[:user])
     ##パスワード暗号化
     @user.hashed_password = params[:user][:password]
     if @user.save
@@ -21,10 +21,10 @@ class UsersController < Base
     end
   end
   def edit
-    @user=current_user
+    @user = current_user
   end
   def update
-    @user=current_user
+    @user = current_user
     if @user.update(user_params)
       redirect_to :index
     else
