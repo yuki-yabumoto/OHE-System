@@ -3,7 +3,7 @@
 ## Version      : 1.0
 ## Designer     : 籔本悠紀,中森楓太
 ## Date         : 2021.06.21
-## Purpose      : Userのコントローラー,パスワードの暗号化
+## Purpose      : Userのコントローラー
 ##
 
 class UsersController < Base
@@ -17,6 +17,7 @@ class UsersController < Base
 
   def create
     @user = User.new(params[:user])
+    ##パスワード暗号化
     @user.hashed_password = params[:user][:password]
     if @user.save
       redirect_to :login
