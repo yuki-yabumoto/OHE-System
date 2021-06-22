@@ -4,7 +4,7 @@
 ## Version      : v1.1
 ## Designer     : 籔本悠紀,中森楓太,田中航生
 ## Date         : 2021.06.15
-## Purpose      : Userモデルの定義,validatesの追加
+## Purpose      : Userモデルの定義
 ##
 
 class User < ApplicationRecord
@@ -18,7 +18,7 @@ class User < ApplicationRecord
     end
   end
 
-##ユーザー認証
+#ユーザー認証
   def authenticate(unencrypted_password)
     BCrypt::Password.new(self.password).is_password?(unencrypted_password) && self
   end
