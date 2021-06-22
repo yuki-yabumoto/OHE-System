@@ -12,6 +12,8 @@ class UsersController < Base
   end
   def create
     @user=User.new(params[:user])
+    ##パスワード暗号化
+    @user.hashed_password = params[:user][:password]
     if @user.save
       redirect_to :login
     else

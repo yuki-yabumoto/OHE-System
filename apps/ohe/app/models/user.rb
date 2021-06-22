@@ -8,7 +8,6 @@
 
 class User < ApplicationRecord
   has_many :clothes, class_name: "Clothe", dependent: :destroy
-
   def hashed_password=(raw_password)
     if raw_password.kind_of?(String)
       self.password = BCrypt::Password.create(raw_password)
@@ -16,4 +15,18 @@ class User < ApplicationRecord
       self.password = nil
     end
   end
+
+  VALID_EMAIL_REGEX = /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i
+  VALID_PASSWORD_REGEX = /\A[\w\-]+\z/
+  validates :email, uniqueness: true
+  validates_format_of :email, with: VALID_EMAIL_REGEX
+  validates_format_of :password, with: VALID_PASSWORD_REGEX
+  validates :email, presence: true, on: :create
+  validates :password, presence: true, on: :create
+  validates :gender, presence: true, on: :update
+  validates :place, presence: true, on: :update
+  validates :from_time, presence: true, on: :update
+  validates :to_time, presence: true, on: :update
+  validates :favorite_color, presence: true, on: :update
+  validates :favorite_type, presence: true, on: :update
 end

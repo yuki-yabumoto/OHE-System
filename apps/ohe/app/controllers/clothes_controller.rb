@@ -22,7 +22,7 @@ class ClothesController < Base
   end
 
   def create
-    @clothe = Clothe.new(params[:id])
+    @clothe = Clothe.new(params[:clothe])
     if @clothe.save
       redirect_to :index
     else
