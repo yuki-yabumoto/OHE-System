@@ -22,7 +22,7 @@ class SessionsController < Base
       user =
         User.find_by("LOWER(email) = ?", @form.email.downcase)
     end
-    #ユーザー認証
+    # ユーザー認証
     if user && user.authenticate(@form.password)
       session[:user_id] = user.id
       redirect_to :index
