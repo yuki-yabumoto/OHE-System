@@ -16,6 +16,7 @@ class User < ApplicationRecord
       self.password = nil
     end
   end
+
   VALID_EMAIL_REGEX = /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /\A[\w\-]+\z/
   validates :email, uniqueness: true

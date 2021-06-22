@@ -7,5 +7,9 @@
 ##
 
 class Clothe < ApplicationRecord
+  self.inheritance_column = nil
+
+  belongs_to :user, class_name: "User", foreign_key: "user_id"
+
   mount_uploader :image, ImageUploader
 end
