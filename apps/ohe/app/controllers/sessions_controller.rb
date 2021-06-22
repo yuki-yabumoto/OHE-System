@@ -16,7 +16,6 @@ class SessionsController < Base
     end
   end
 
-
   def create
     @form = LoginForm.new(params[:login_form])
     if @form.email.present?
