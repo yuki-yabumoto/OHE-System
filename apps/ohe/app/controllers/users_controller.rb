@@ -1,8 +1,8 @@
 ##
 ## File Name    : users_controller.rb
-## Version      : 1.0
-## Designer     : 籔本悠紀,田中航生
-## Date         : 2021.06.06
+## Version      : 1.1
+## Designer     : 籔本悠紀,中森楓太,田中航生
+## Date         : 2021.06.21
 ## Purpose      : Userのコントローラー,create文とupdate文の追加
 ##
 
@@ -12,6 +12,8 @@ class UsersController < Base
   end
   def create
     @user=User.new(params[:user])
+    ##パスワード暗号化
+    @user.hashed_password = params[:user][:password]
     if @user.save
       redirect_to :login
     else
