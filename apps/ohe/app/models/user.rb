@@ -17,7 +17,7 @@ class User < ApplicationRecord
     end
   end
 
-#ユーザー認証
+  #ユーザー認証
   def authenticate(unencrypted_password)
     BCrypt::Password.new(self.password).is_password?(unencrypted_password) && self
   end
