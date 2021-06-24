@@ -1,7 +1,8 @@
 ##
 ## File Name    : user.rb
+
 ## Version      : v1.1
-## Designer     : 籔本悠紀,中森楓太
+## Designer     : 籔本悠紀,中森楓太,田中航生
 ## Date         : 2021.06.15
 ## Purpose      : Userモデルの定義
 ##
@@ -16,11 +17,15 @@ class User < ApplicationRecord
     end
   end
 
+
+  def authenticate(unencrypted_password)
+    BCrypt::Password.new(self.password).is_password?(unencrypted_password) && self
+  end
+
   VALID_EMAIL_REGEX = /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i
-  VALID_PASSWORD_REGEX = /\A[\w\-]+\z/
   validates :email, uniqueness: true
   validates_format_of :email, with: VALID_EMAIL_REGEX
-  validates_format_of :password, with: VALID_PASSWORD_REGEX
+
   validates :email, presence: true, on: :create
   validates :password, presence: true, on: :create
   validates :gender, presence: true, on: :update
@@ -29,4 +34,5 @@ class User < ApplicationRecord
   validates :to_time, presence: true, on: :update
   validates :favorite_color, presence: true, on: :update
   validates :favorite_type, presence: true, on: :update
+
 end
