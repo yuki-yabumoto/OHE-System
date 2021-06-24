@@ -23,5 +23,10 @@
         button_to '新規登録', { controller: 'users', action: 'new' }, { method: :get }
       end
     %>
+    <%=
+      if current_user
+        button_to '服の追加', { controller: 'clothes', action: 'new' }, { method: :get }
+      end
+    %>
   </div>
 </header>
