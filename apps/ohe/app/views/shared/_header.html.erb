@@ -18,9 +18,9 @@
     %>
     <%=
       if current_user
-        link_to "アカウント編集", :edit_users
+        button_to 'アカウント編集', { controller: 'users', action: 'edit' }, { method: :get }
       else
-        link_to "新規登録", :new_users
+        button_to '新規登録', { controller: 'users', action: 'new' }, { method: :get }
       end
     %>
   </div>
