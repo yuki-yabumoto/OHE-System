@@ -1,8 +1,8 @@
 ##
 ## File Name    : clothes_controller.rb
-## Version      : v1.0
+## Version      : v2.0
 ## Designer     : 籔本悠紀
-## Date         : 2021.06.06
+## Date         : 2021.06.25
 ## Purpose      : Clotheのコントローラー
 ##
 
@@ -22,13 +22,14 @@ class ClothesController < Base
   end
 
   def create
-    @clothe = Clothe.new(params[:clothe])
+    user = current_user
+    param = params[:clothe]
+    param['user_id'] = user.id
+    @clothe = Clothe.new(param)
     if @clothe.save
       redirect_to :index
     else
       render action:"new"
     end
-
   end
-
 end
