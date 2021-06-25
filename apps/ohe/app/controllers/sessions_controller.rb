@@ -1,12 +1,13 @@
 ##
 ## File Name    : sessions_controller.rb
-## Version      : v1.0
-## Designer     : 籔本悠紀
-## Date         : 2021.06.06
+## Version      : v1.1
+## Designer     : 籔本悠紀,中森楓太
+## Date         : 2021.06.19
 ## Purpose      : セッションのコントローラー
 ##
 
 class SessionsController < Base
+<<<<<<< HEAD
    def new
      if current_user
        redirect_to :index
@@ -15,6 +16,16 @@ class SessionsController < Base
        render action: "new"
      end
    end
+=======
+  def new
+    if current_user
+      redirect_to :index
+    else
+      @form = LoginForm.new
+      render action: "new"
+    end
+  end
+>>>>>>> bc1019b350c50811677a53f477e373fbbb314b9c
 
   def create
     @form = LoginForm.new(params[:login_form])
@@ -22,7 +33,8 @@ class SessionsController < Base
       user =
         User.find_by("LOWER(email) = ?", @form.email.downcase)
     end
-    if user
+    # ユーザー認証
+    if user && user.authenticate(@form.password)
       session[:user_id] = user.id
       redirect_to :index
     else

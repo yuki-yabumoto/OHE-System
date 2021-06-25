@@ -1,6 +1,6 @@
 <%#
   File Name   : shared/_header.html.erb
-  Version     : 1.0
+  Version     : 1.1
   Designer    : 籔本悠紀
   Date        : 2021.06.05
   Purpose     : ヘッダーの表示
@@ -9,19 +9,24 @@
 <header>
   <span class="logo-mark">OHEシステム</span>
   <div id="sessions">
-  <%=
-    if current_user
-      link_to "ログアウト", :session, method: :delete
-    else
-      link_to "ログイン", :login
-    end
-  %>
-  <%=
-    if current_user
-      link_to "アカウント編集", :edit_users
-    else
-      link_to "新規登録", :new_users
-    end
-  %>
+    <%=
+      if current_user
+        button_to 'ログアウト', { controller: 'sessions', action: 'destroy' }, { method: :delete }
+      else
+        button_to 'ログイン', { controller: 'sessions', action: 'new' }, { method: :get }
+      end
+    %>
+    <%=
+      if current_user
+        button_to 'アカウント編集', { controller: 'users', action: 'edit' }, { method: :get }
+      else
+        button_to '新規登録', { controller: 'users', action: 'new' }, { method: :get }
+      end
+    %>
+    <%=
+      if current_user
+        button_to '服の追加', { controller: 'clothes', action: 'new' }, { method: :get }
+      end
+    %>
   </div>
 </header>
