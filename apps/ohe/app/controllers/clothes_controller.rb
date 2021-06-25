@@ -32,4 +32,11 @@ class ClothesController < Base
       render action:"new"
     end
   end
+
+  def destroy
+    clothe = Clothe.find(params[:id])
+    clothe.destroy!
+    flash.notice = "服を削除しました"
+    redirect_to :index
+  end
 end
