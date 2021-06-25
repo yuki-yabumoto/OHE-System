@@ -11,7 +11,7 @@ class UsersController < Base
     @user = User.new
   end
   def create
-    @user = User.new(params[:user])
+    @user=User.new(params[:user])
     ##パスワード暗号化
     @user.hashed_password = params[:user][:password]
     if @user.save
