@@ -7,8 +7,7 @@
 
 Rails.application.routes.draw do
   root "top#index", as: :index
-  get "login" => "sessions#new", as: :login
-  resource :session, only: [ :create, :destroy ]
+  resource :session, only: [ :new, :create, :destroy ]
   resource :users
-  resource :clothes
+  resources :clothes
 end

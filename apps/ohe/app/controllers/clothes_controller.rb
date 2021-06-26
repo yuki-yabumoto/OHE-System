@@ -7,14 +7,20 @@
 ##
 
 class ClothesController < Base
+
+  def index
+    user = current_user
+    @clothes = Clothe.where(user_id: user.id)
+    render action: "index"
+  end
+
   def new
     @clothe = Clothe.new
   end
 
   def show
-    user = User.find(params[:id])
-    @clothes = Clothe.where(user_id: user.id)
-    redirect_to :index
+    clothe = Clothe.find(params[:id])
+    redirect_to [ :edit, clothe ]
   end
 
   def edit
@@ -27,7 +33,7 @@ class ClothesController < Base
     param['user_id'] = user.id
     @clothe = Clothe.new(param)
     if @clothe.save
-      redirect_to :index
+      redirect_to :clothes
     else
       render action:"new"
     end
@@ -37,6 +43,6 @@ class ClothesController < Base
     clothe = Clothe.find(params[:id])
     clothe.destroy!
     flash.notice = "服を削除しました"
-    redirect_to :index
+    redirect_to :clothes
   end
 end

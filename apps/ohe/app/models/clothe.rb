@@ -1,8 +1,8 @@
 ##
 ## File Name    : clothe.rb
-## Version      : v1.0
+## Version      : v1.1
 ## Designer     : 籔本悠紀 鶴田
-## Date         : 2021.06.06
+## Date         : 2021.06.26
 ## Purpose      : Clotheモデルの定義
 ##
 
@@ -14,7 +14,7 @@ class Clothe < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def edit
-    @clothes = clothes.find()
+    @clothe = Clothes.find(params[:id])
   end
 end
 
