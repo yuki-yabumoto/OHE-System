@@ -1,29 +1,12 @@
 <% @title = "服情報編集" %>
-
 <h1><%= @title %></h1>
-
-<%= form_with model: @clothe, url: :clothes do |f| %>
-    <div>
-        <%= f.label "服の種類" %>
-        <%= f.select :kind,
-            [["トップス(半袖)", 0], ["トップス(長袖)", 1], ["アウター(薄手)", 2],
-            ["アウター(厚手)", 3], ["シューズ", 4], ["ボトム", 5], ["アクセサリー", 6]]
-        %>
+    
+<div id="generic-form">
+  <%= form_with model: @clothe, url: :clothes do |f| %>
+    <%= render "edit_clothe", f: f %>
+    <div class="buttons">
+      <%= f.submit "更新" %>
+      <%= link_to "キャンセル", :index %>
     </div>
-    <div>
-        <%= f.label "色" %>
-        <%= f.select :color,
-            [["白", 0], ["黒", 1], ["赤", 2], ["青", 3], ["黄", 4], ["緑", 5], ["柄物", 6], ["ベージュ", 7]]
-        %>
-    </div>
-    <div>
-        <%= f.label "タイプ" %>
-        <%= f.select :type,
-            [["カジュアル系", 0], ["ロック系", 1], ["ストリート系", 2], ["ガーリッシュ系", 3]]
-        %>
-    </div>
-    <div>
-        <%= f.label "服の画像を追加" %>
-        <%= f.file_field :image %>
-    </div>
-<% end %>
+  <% end %>
+</div>
