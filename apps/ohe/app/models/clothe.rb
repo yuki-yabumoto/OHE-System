@@ -14,7 +14,7 @@ class Clothe < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def edit
-    @clothes = clothes.find()
+    @clothe = Clothes.find(params[:id])
   end
 end
 
