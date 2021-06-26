@@ -19,10 +19,8 @@ class ClothesController < Base
   end
 
   def show
-    # user = current_user
-    logger.debug("Clothe params: #{params}")
-    # @clothes = Clothe.find(params[:id])
-    # render action: "show"
+    clothe = Clothe.find(params[:id])
+    redirect_to [ :edit, clothe ]
   end
 
   def edit
