@@ -7,7 +7,6 @@
 ##
 
 class ClothesController < Base
-
   def index
     user = current_user
     @clothes = Clothe.where(user_id: user.id)
@@ -24,7 +23,7 @@ class ClothesController < Base
   end
 
   def edit
-     @clothe = Clothe.find(params[:id]);
+    @clothe = Clothe.find(params[:id]);
   end
 
   def create
