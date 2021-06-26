@@ -16,14 +16,18 @@ class UsersController < Base
     ##パスワード暗号化
     @user.hashed_password = params[:user][:password]
     if @user.save
+      flash.notice = "アカウントを作成しました"
       redirect_to :login
     else
+      flash.alert = "このメールアドレスは既に登録されています"
       render action: "new"
     end
   end
+
   def edit
     @user = current_user
   end
+
   def update
     @user = current_user
     if @user.update(user_params)
@@ -32,6 +36,7 @@ class UsersController < Base
       render action:"edit"
     end
   end
+
   private def user_params
     params.require(:user).permit(
       :gender, :place, :datetime,
