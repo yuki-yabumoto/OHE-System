@@ -1,32 +1,47 @@
 ##
 ## File Name    : clothes_controller.rb
-## Version      : v1.0
+## Version      : v2.0
 ## Designer     : 籔本悠紀
-## Date         : 2021.06.06
+## Date         : 2021.06.25
 ## Purpose      : Clotheのコントローラー
 ##
 
 class ClothesController < Base
-    
-    def new
-      @clothe = Clothe.new
-    end
-  
-    def show
-      user = User.find(params[:id])
-      @clothes = Clothe.where(user_id: user.id)
-      redirect_to [:show_clothes, user]
-    end
-    
-    def edit
-      @clothe = Clothe.find(params[:id]);
-    end
-  
-    def destroy
-      clothe = Clothe.find(parms[:id]);
-      clothe.destroy!;
-      redirect_to :clothes_show;
-    end
+  def index
+    user = current_user
+    @clothes = Clothe.where(user_id: user.id)
+    render action: "index"
+  end
 
+  def new
+    @clothe = Clothe.new
+  end
+
+  def show
+    clothe = Clothe.find(params[:id])
+    redirect_to [ :edit, clothe ]
+  end
+
+  def edit
+    @clothe = Clothe.find(params[:id]);
+  end
+
+  def create
+    user = current_user
+    param = params[:clothe]
+    param['user_id'] = user.id
+    @clothe = Clothe.new(param)
+    if @clothe.save
+      redirect_to :clothes
+    else
+      render action:"new"
+    end
+  end
+
+  def destroy
+    clothe = Clothe.find(params[:id])
+    clothe.destroy!
+    flash.notice = "服を削除しました"
+    redirect_to :clothes
+  end
 end
-  
