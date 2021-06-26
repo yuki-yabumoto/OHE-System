@@ -32,8 +32,10 @@ class ClothesController < Base
     param['user_id'] = user.id
     @clothe = Clothe.new(param)
     if @clothe.save
+      flash.notice = "服を追加しました"
       redirect_to :clothes
     else
+      flash.alert = "服の追加に失敗しました"
       render action:"new"
     end
   end
