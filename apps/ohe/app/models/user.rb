@@ -1,6 +1,5 @@
 ##
 ## File Name    : user.rb
-
 ## Version      : v1.1
 ## Designer     : 籔本悠紀,中森楓太,田中航生
 ## Date         : 2021.06.26
