@@ -7,16 +7,6 @@
 ##
 
 class SessionsController < Base
-<<<<<<< HEAD
-   def new
-     if current_user
-       redirect_to :index
-     else
-       @form = LoginForm.new
-       render action: "new"
-     end
-   end
-=======
   def new
     if current_user
       redirect_to :index
@@ -25,7 +15,6 @@ class SessionsController < Base
       render action: "new"
     end
   end
->>>>>>> bc1019b350c50811677a53f477e373fbbb314b9c
 
   def create
     @form = LoginForm.new(params[:login_form])
