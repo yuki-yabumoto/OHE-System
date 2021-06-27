@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "login" => "sessions#new", as: :login
   resource :session, only: [ :new, :create, :destroy ]
   resource :users
-  resource :clothes
-  resource :coordinates
+  resources :clothes
+  resources :coordinates
 
 end
