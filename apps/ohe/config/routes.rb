@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resource :session, only: [ :create, :destroy ]
   resource :users
   resource :clothes
+  resource :coordinates
+
 end
