@@ -1,9 +1,16 @@
-class CoordinateController < ApplicationController
-
-    def show
-        @coordinates.image = "#{@coordinates.id}.jpg"
-        image = params[:image_file]
-        File.binwrite("public/#{@coordinates.image}",image.read)
+class CoordinateController < Base
+    
+    def index
+        user = current_user
+        @coordinates = Coordinate.where(user_id: user.id)
+        @date = Coordinate.select("created_at")
+        render action: "index"
     end
-
+     
+    def destroy
+        coordinate = Coordinate.find(params[:id])
+        coordinate.destroy!
+        flash.notice = "服を削除しました"
+        redirect_to :coordinates   
+    end     
 end
