@@ -1,0 +1,72 @@
+<div align="center">
+    <h1>履歴表示画面</h1>
+</div>
+
+<div>
+  <table class = "list">
+    <tr>
+      <th>日付</th>
+      <th>トップス</th>
+      <th>アウター</th>
+      <th>シューズ</th>
+      <th>ボトム</th>
+      <th>アクセサリー</th>
+    </tr>
+    <tr>
+      <% @date.each do |date| %>
+        <%= date.created_at %>
+      <% end %>
+    </th>
+    <% @coordinates.each do |c|>    
+      <tr>
+        <td>
+        <%
+          case c.tops
+          when 0 then tops = image_tag c.tops.image.thumb.to_s
+          end
+        %>
+        <%= tops %>
+        </td>
+        <td>
+        <%
+          case c.bottoms
+          when 0 then bottoms = image_tag c.bottoms.image.thumb.to_s
+          end
+        %>
+        <%= bottoms %>
+        </td>
+        <td>
+        <%
+          case c.outer
+          when 0 then outer = image_tag c.outer.image.thumb.to_s
+          end
+        %>
+        <%= outer %>
+        </td>
+        <td>
+        <%
+          case c.shoes
+          when 0 then shoes = image_tag c.shoes.image.thumb.to_s
+          end
+        %>
+        <%= shoes %>
+        </td>
+        <td>
+        <%
+          case c.accessory
+          when 0 then accessory =  image_tag c.accessory.image.thumb.to_s
+          end
+        %>
+        <%= accessory %>
+        </td>
+        <td class = "actions">
+          <%= link_to "削除", "[ c ]", method: :delete,
+          data: { confirm: "本当に削除しますか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+
+
