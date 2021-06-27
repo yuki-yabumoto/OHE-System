@@ -1,15 +1,32 @@
 /*
 ** File Name    : container.scss
-** Version      : 1.0
+** Version      : 2.0
 ** Designer     : 籔本悠紀
-** Date         : 2021.06.04
+** Date         : 2021.06.24
 ** Purpose      : divのcontainerクラスのスタイルシート
  */
 
 @import "colors";
+@import "dimensions";
 
 div#wrapper {
     div#container {
+      div#flash{
+        text-align: center;
+        span.notice, span.alert {
+          display: inline-block;
+          padding: $moderate $wide;
+          margin: 0 $wide;
+          font-size: $normal;
+          color: $very_light_gray;
+        }
+        span.notice {
+          background-color: $green;
+        }
+        span.alert {
+          background-color: $red;
+        }
+      }
       h1 {
         margin: 0;
         padding: 9px 6px;

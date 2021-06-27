@@ -1,0 +1,71 @@
+<%#
+  File Name     : clothes/index.html.erb
+  Version       : v1.1
+  Designer      : 籔本悠紀
+  Date          : 2021.06.26
+  Purpose       : 登録した服情報の一覧を表示する画面
+%>
+
+<%= @title = "登録済の服の一覧"  %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+ <table class="listing">
+    <tr>
+      <th>種類</th>
+      <th>色</th>
+      <th>ジャンル</th>
+      <th>画像</th>
+    </tr>
+    <% @clothes.each do |c| %>
+      <tr>
+        <td>
+          <%
+            case c.kind
+            when 0 then kind = "トップス(半袖)"
+            when 1 then kind = "トップス(長袖)"
+            when 2 then kind = "アウター(薄手)"
+            when 3 then kind = "アウター(厚手)"
+            when 4 then kind = "シューズ"
+            when 5 then kind = "ボトム"
+            when 6 then kind = "アクセサリー"
+            end
+          %>
+          <%= kind %>
+        </td>
+        <td>
+          <%
+            case c.color
+            when 0 then color = "白"
+            when 1 then color = "黒"
+            when 2 then color = "赤"
+            when 3 then color = "青"
+            when 4 then color = "黄"
+            when 5 then color = "緑"
+            when 6 then color = "柄物"
+            when 7 then color = "ベージュ"
+            end
+          %>
+          <%= color %>
+        </td>
+        <td>
+          <%
+            case c.type
+            when 0 then type = "カジュアル系"
+            when 1 then type = "ロック系"
+            when 2 then type = "ストリート系"
+            when 3 then type = "ガーリッシュ系"
+            end
+          %>
+          <%= type %>
+        </td>
+        <td><%= image_tag c.image.thumb.to_s %></td>
+        <td class="actions">
+          <%= link_to "編集", [ :edit, c ] %> |
+          <%= link_to "削除", [ c ], method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
