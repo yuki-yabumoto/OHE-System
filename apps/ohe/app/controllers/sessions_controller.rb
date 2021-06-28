@@ -16,7 +16,6 @@ class SessionsController < Base
     end
   end
 
-
   def create
     @form = LoginForm.new(params[:login_form])
     if @form.email.present?
@@ -26,14 +25,17 @@ class SessionsController < Base
     # ユーザー認証
     if user && user.authenticate(@form.password)
       session[:user_id] = user.id
+      flash.notice = "ログインしました"
       redirect_to :index
     else
+      flash.alert = "パスワードまたはメールアドレスが違います"
       render action: "new"
     end
   end
 
   def destroy
     session.delete(:user_id)
+    flash.notice = "ログアウトしました"
     redirect_to :index
   end
 end

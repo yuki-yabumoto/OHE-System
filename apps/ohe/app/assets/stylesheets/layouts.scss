@@ -39,7 +39,7 @@ div#wrapper {
 }
 
 header {
-  padding: 5px;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0);
   color: $black;
   text-align: center;
@@ -50,7 +50,16 @@ header {
   }
   div#sessions {
     float: right;
-    color: $very_light_gray;
+    form.button_to{
+      input {
+        padding: $wide;
+        font-size: medium;
+        border: none;
+        background-color: white;
+        border-radius: 20px;
+      }
+      display: inline-block;
+    }
     margin-left: $wide;
   }
 }
