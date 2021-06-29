@@ -1,3 +1,11 @@
+##
+## File Name    : image_uploader.rb
+## Version      : v2.0
+## Designer     : 籔本悠紀
+## Date         : 2021.06.29
+## Purpose      : 画像のアップロードに使用
+##
+
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
