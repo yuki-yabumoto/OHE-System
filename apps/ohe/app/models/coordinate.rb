@@ -1,8 +1,8 @@
 ##
 ##  File Name        : coordinate.rb
-##  Version        : V1.1
+##  Version        : V1.2
 ##  Designer        : 京増ほのか
-##  Date        : 2021.06.20
+##  Date        : 2021.06.28
 ##  Purpose           : コーディネート提案
 ##
 
@@ -67,7 +67,7 @@ class Coordinate < ApplicationRecord
         #C7から気温(temperature)と湿度(humidity)を受け取り不快指数(discomfort_index)を計算
         if temperature == nil or humidity == nil or weather == nil or id == nil then    
             @e2 = '天気情報が取得できませんでした。'
-            return 0
+            return @e2
         end
         @discomfort_index = 0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3
         
@@ -129,7 +129,7 @@ class Coordinate < ApplicationRecord
         
         if @tops.count == 0 or @bottoms.count == 0 or @shoes.count == 0 then
             @e1 = '服の登録が十分にできていません。服を登録してください。'
-            return 0
+            return @e1
         end
         
         #コーディネート候補の作成と投票
@@ -149,7 +149,7 @@ class Coordinate < ApplicationRecord
         @coordination_final = temp[0]
         if @coordination_final == nil then
             @e1 = '服の登録が十分にできていません。服を登録してください。'
-            return 0
+            return @e1
         else 
             @tops = @coordination_final.tops.kind
             @tops_color = @coordination_final.tops.color

@@ -1,6 +1,5 @@
 class C4TestController < ApplicationController
     require 'suggest_coordination_controller.rb'
-    
     def test
         t = SuggestCoordinationController.new()
         @t = t.suggest(20,20,0,1)
