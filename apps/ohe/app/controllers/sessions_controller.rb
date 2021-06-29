@@ -2,7 +2,7 @@
 ## File Name    : sessions_controller.rb
 ## Version      : v1.1
 ## Designer     : 籔本悠紀,中森楓太
-## Date         : 2021.06.19
+## Date         : 2021.06.29
 ## Purpose      : セッションのコントローラー
 ##
 
@@ -25,14 +25,17 @@ class SessionsController < Base
     # ユーザー認証
     if user && user.authenticate(@form.password)
       session[:user_id] = user.id
+      flash.notice = "ログインしました"
       redirect_to :index
     else
+      flash.alert = "パスワードまたはメールアドレスが違います"
       render action: "new"
     end
   end
 
   def destroy
     session.delete(:user_id)
+    flash.notice = "ログアウトしました"
     redirect_to :index
   end
 end

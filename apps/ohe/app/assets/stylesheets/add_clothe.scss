@@ -1,0 +1,21 @@
+/*
+** File Name    : add_clothe.scss
+** Version      : v1.0
+** Designer     : 籔本悠紀
+** Date         : 2021.06.29
+** Purpose      : 服情報入力画面で使用するスタイルシート
+ */
+
+@import "colors";
+
+div#wrapper {
+    div#container {
+        div#generic-form {
+            div#form {
+                label {
+                    border: solid 4px $dark_gray;
+                }
+            }
+        }
+    }
+}
