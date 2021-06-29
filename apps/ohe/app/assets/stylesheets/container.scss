@@ -1,8 +1,14 @@
 /*
 ** File Name    : container.scss
+<<<<<<< HEAD
 ** Version      : 2.0
 ** Designer     : 籔本悠紀
 ** Date         : 2021.06.24
+=======
+** Version      : v1.0
+** Designer     : 籔本悠紀
+** Date         : 2021.06.29
+>>>>>>> 718d8dae29b1758ae23537f6614452b6f2f291d4
 ** Purpose      : divのcontainerクラスのスタイルシート
  */
 
@@ -11,7 +17,11 @@
 
 div#wrapper {
     div#container {
+<<<<<<< HEAD
       div#flash{
+=======
+      div#flash {
+>>>>>>> 718d8dae29b1758ae23537f6614452b6f2f291d4
         text-align: center;
         span.notice, span.alert {
           display: inline-block;
