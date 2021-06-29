@@ -1,8 +1,8 @@
 /*
 ** File Name    : layout.scss
-** Version      : 1.0
+** Version      : v1.0
 ** Designer     : 籔本悠紀
-** Date         : 2021.06.06
+** Date         : 2021.06.29
 ** Purpose      : 基本レイアウトで使用するスタイルシート
  */
 
@@ -50,7 +50,8 @@ header {
   }
   div#sessions {
     float: right;
-    form.button_to{
+
+    form.button_to {
       input {
         padding: $wide;
         font-size: medium;
