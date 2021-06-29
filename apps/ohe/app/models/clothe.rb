@@ -18,6 +18,7 @@ class Clothe < ApplicationRecord
   end
 
   validates :image, presence: {message:" 服の画像の追加が不十分です"}
+  
 end
 
 #   def create
