@@ -1,9 +1,8 @@
 ##
 ## File Name    : user.rb
-
 ## Version      : v1.1
 ## Designer     : 籔本悠紀,中森楓太,田中航生
-## Date         : 2021.06.15
+## Date         : 2021.06.29
 ## Purpose      : Userモデルの定義
 ##
 
