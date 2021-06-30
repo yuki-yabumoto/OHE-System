@@ -2,7 +2,7 @@
 ## File Name    : clothes_controller.rb
 ## Version      : v2.0
 ## Designer     : 籔本悠紀
-## Date         : 2021.06.25
+## Date         : 2021.06.29
 ## Purpose      : Clotheのコントローラー
 ##
 

@@ -2,7 +2,7 @@
 ## File Name    : sessions_controller.rb
 ## Version      : v1.1
 ## Designer     : 籔本悠紀,中森楓太
-## Date         : 2021.06.19
+## Date         : 2021.06.29
 ## Purpose      : セッションのコントローラー
 ##
 

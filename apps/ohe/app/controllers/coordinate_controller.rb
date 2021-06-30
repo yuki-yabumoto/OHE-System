@@ -1,3 +1,4 @@
+
 class CoordinateController < ApplicationController
 
     def show
@@ -9,3 +10,4 @@ class CoordinateController < ApplicationController
         coordinate = Coordinate.find(params[:id]) #coordinateのIDを1つ検索
         coordinate.destroy
     end
+end

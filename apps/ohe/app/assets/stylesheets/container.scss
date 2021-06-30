@@ -1,8 +1,8 @@
 /*
 ** File Name    : container.scss
-** Version      : 2.0
+** Version      : v1.0
 ** Designer     : 籔本悠紀
-** Date         : 2021.06.24
+** Date         : 2021.06.29
 ** Purpose      : divのcontainerクラスのスタイルシート
  */
 
@@ -11,7 +11,7 @@
 
 div#wrapper {
     div#container {
-      div#flash{
+      div#flash {
         text-align: center;
         span.notice, span.alert {
           display: inline-block;
