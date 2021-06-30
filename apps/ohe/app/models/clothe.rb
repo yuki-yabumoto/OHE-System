@@ -14,11 +14,11 @@ class Clothe < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def edit
-    @clothes = Clothes.find(params[:id])
+    @clothe = Clothes.find(params[:id])
   end
 
   validates :image, presence: {message:" 服の画像の追加が不十分です"}
-  
+
 end
 
 #   def create
