@@ -1,3 +1,4 @@
+##
 ## File Name    : clothes_controller.rb
 ## Version      : v2.0
 ## Designer     : 籔本悠紀
