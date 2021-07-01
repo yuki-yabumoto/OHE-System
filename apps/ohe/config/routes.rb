@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get "login" => "sessions#new", as: :login
   resource :session, only: [ :create, :destroy ]
   resource :users
-  resource :clothes
+  resources :clothes
 end
