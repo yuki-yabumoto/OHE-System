@@ -7,6 +7,9 @@
 ##
 
 class Coordinate < ApplicationRecord
+
+    belongs_to :user, class_name: "User", foreign_key: "user_id"
+
     private def voting(i, j, k, l ,m)
         #最終的に出力するコーディネート
         @coordination_final = @coordination.new()
@@ -78,37 +81,37 @@ class Coordinate < ApplicationRecord
         @coordination_option = []
         
         #ユーザ情報のuser_idから好みの色1、色2、好みのスタイルを受け取る
-        user_info = (Users.find_by(id: id))
+        user_info = (User.find_by(id: id))
         @favorite_color = user_info.favorite_color
         @favorite_type = user_info.favorite_type
 
         #気温、不快指数、天気による条件分岐
         #トップスとアウターの選択
         if @discomfort_index < 60 then #トップス(長袖)、アウター(厚手)
-            @tops = Clothes.where(user_id: id, kind: 1)
-            @outer = Clothes.where(user_id: id, kind: 3)
+            @tops = Clothe.where(user_id: id, kind: 1)
+            @outer = Clothe.where(user_id: id, kind: 3)
         elsif @discomfort_index < 65 then
             if weather == 3 or weather == 2 then #トップス(長袖)、アウター(厚手)
-                @tops = Clothes.where(user_id: id, kind: 1)
-                @outer = Clothes.where(user_id: id, kind: 3)
+                @tops = Clothe.where(user_id: id, kind: 1)
+                @outer = Clothe.where(user_id: id, kind: 3)
             else #トップス(長袖)、アウター(薄手)
-                @tops = Clothes.where(user_id: id, kind: 1)
-                @outer = Clothes.where(user_id: id, kind: 2)
+                @tops = Clothe.where(user_id: id, kind: 1)
+                @outer = Clothe.where(user_id: id, kind: 2)
             end
         elsif @discomfort_index < 70 then
             if temperature >= 25 then #トップス(長袖)
-                @tops = Clothes.where(user_id: id, kind: 1)
+                @tops = Clothe.where(user_id: id, kind: 1)
                 @outer = []
             elsif weather == 0 then #トップス(長袖)
-                @tops = Clothes.where(user_id: id, kind: 1)
+                @tops = Clothe.where(user_id: id, kind: 1)
                 @outer = []
             else #トップス(長袖)、アウター(薄手)
-                @tops = Clothes.where(user_id: id, kind: 1)
-                @outer = Clothes.where(user_id: id, kind: 2)
+                @tops = Clothe.where(user_id: id, kind: 1)
+                @outer = Clothe.where(user_id: id, kind: 2)
             end
         elsif @discomfort_index < 75 then
             if temperature >= 25 then #トップス(半袖)
-                @tops = Clothes.where(user_id: id, kind: 0)
+                @tops = Clothe.where(user_id: id, kind: 0)
                 outer = []
             elsif weather == 2 then #トップス(長袖)
                 @tops = Clothes.where(user_id: id, kind: 1)
@@ -118,14 +121,14 @@ class Coordinate < ApplicationRecord
                 @outer = Clothes.where(user_id: id, kind: 2)
             end
         else #トップス(半袖)
-            @tops = Clothes.where(user_id: id, kind: 0)
+            @tops = Clothe.where(user_id: id, kind: 0)
             @outer = []
         end
 
         #ボトムス、シューズ、アクセサリーを全ての中から選ぶ
-        @bottoms = Clothes.where(user_id: id, kind: 5)
-        @shoes = Clothes.where(user_id: id, kind: 4)
-        @accesary = Clothes.where(user_id: id, kind: 6)
+        @bottoms = Clothe.where(user_id: id, kind: 5)
+        @shoes = Clothe.where(user_id: id, kind: 4)
+        @accesary = Clothe.where(user_id: id, kind: 6)
         
         if @tops.count == 0 or @bottoms.count == 0 or @shoes.count == 0 then
             @e1 = '服の登録が十分にできていません。服を登録してください。'
