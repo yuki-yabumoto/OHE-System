@@ -21,6 +21,17 @@ class CoordinatesController < Base
         weather = user.getWeatherForecast
         @coordinate = @coordinate.suggest(weather[:min_temperature], weather[:max_humidity] \
                                 , weather[:weather], user.id)
+        if !@e1 && !@e2
+            param = {}
+            param['user_id'] = user.id
+            param['tops'] = @coordinate.tops != nil ? @coordinate.tops.id : nil
+            param['bottoms'] = @coordinate.bottoms != nil ?  @coordinate.bottoms.id : nil
+            param['outer'] = @coordinate.outer != nil ? @coordinate.outer.id : nil
+            param['shoes'] = @coordinate.shoes != nil ? @coordinate.shoes.id : nil
+            param['accessory'] = @coordinate.accesary.id != nil ? @coordinate.accesary.id : nil
+            c = Coordinate.new(param)
+            c.save
+        end
         render action: "show"
     end
 
