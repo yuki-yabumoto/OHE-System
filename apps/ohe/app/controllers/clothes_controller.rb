@@ -1,8 +1,8 @@
 ##
 ## File Name    : clothes_controller.rb
-## Version      : v2.0
+## Version      : v3.0
 ## Designer     : 籔本悠紀
-## Date         : 2021.06.29
+## Date         : 2021.07.03
 ## Purpose      : Clotheのコントローラー
 ##
 
@@ -30,8 +30,14 @@ class ClothesController < Base
     user = current_user
     param = params[:clothe]
     param['user_id'] = user.id
+
+    tag_name = param[:tag]
+    param.delete(:tag)
+
     @clothe = Clothe.new(param)
     if @clothe.save
+      @tag = Tag.new(clothe_id: @clothe.id, tag_name: tag_name)
+      @tag.save
       flash.notice = "服を追加しました"
       redirect_to :clothes
     else
@@ -43,6 +49,9 @@ class ClothesController < Base
   def destroy
     clothe = Clothe.find(params[:id])
     clothe.destroy!
+    if tag = Tag.find_by(clothe_id: params[:id])
+      tag.destroy!
+    end
     flash.notice = "服を削除しました"
     redirect_to :clothes
   end
