@@ -12,52 +12,62 @@
       <th>ボトム</th>
       <th>アクセサリー</th>
     </tr>
-    <tr>
+    <th>
       <% @date.each do |date| %>
         <%= date.created_at %>
       <% end %>
     </th>
-    <% @coordinates.each do |c|>    
+    <% @coordinates.each do |c| %>
       <tr>
         <td>
         <%
           case c.tops
-          when 0 then tops = image_tag c.tops.image.thumb.to_s
+          # when 0 then tops = image_tag c.tops.image.thumb.to_s
+            when 0 then tops = c.tops.image.thumb.to_s
           end
         %>
-        <%= tops %>
+        <%#= tops %>
+        <%# image_tag tops %>
         </td>
         <td>
         <%
           case c.bottoms
-          when 0 then bottoms = image_tag c.bottoms.image.thumb.to_s
+          # when 0 then bottoms = image_tag c.bottoms.image.thumb.to_s
+          when 0 then bottoms = c.bottoms.image.thumb.to_s
           end
         %>
-        <%= bottoms %>
+        <%#= bottoms %>
+        <%= image_tag bottoms %>
         </td>
         <td>
         <%
           case c.outer
-          when 0 then outer = image_tag c.outer.image.thumb.to_s
+          # when 0 then outer = image_tag c.outer.image.thumb.to_s
+            when 0 then outer = c.outer.image.thumb.to_s
           end
         %>
-        <%= outer %>
+        <%#= outer %>
+        <%= image_tag outer %>
         </td>
         <td>
         <%
           case c.shoes
-          when 0 then shoes = image_tag c.shoes.image.thumb.to_s
+          # when 0 then shoes = image_tag c.shoes.image.thumb.to_s
+            when 0 then shoes = c.shoes.image.thumb.to_s
           end
         %>
-        <%= shoes %>
+        <%#= shoes %>
+        <%= image_tag shoes %>
         </td>
         <td>
         <%
           case c.accessory
-          when 0 then accessory =  image_tag c.accessory.image.thumb.to_s
+          # when 0 then accessory =  image_tag c.accessory.image.thumb.to_s
+          when 0 then accessory =  c.accessory.image.thumb.to_s
           end
         %>
-        <%= accessory %>
+        <%#= accessory %>
+        <%= image_tag accessory %>
         </td>
         <td class = "actions">
           <%= link_to "削除", "[ c ]", method: :delete,
