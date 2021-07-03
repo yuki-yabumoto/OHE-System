@@ -21,6 +21,8 @@ module Ohe
       g.controller_specs false
       g.view_specs false
     end
+    
     config.hosts << '.example.com'
+    
   end
 end
