@@ -1,21 +1,22 @@
 <%#
   File Name     : clothes/index.html.erb
-  Version       : v1.1
+  Version       : v1.2
   Designer      : 籔本悠紀
-  Date          : 2021.06.29
+  Date          : 2021.07.03
   Purpose       : 登録した服情報の一覧を表示する画面
 %>
 
-<%= @title = "登録済の服の一覧"  %>
+<% @title = "登録済の服の一覧"  %>
 <h1><%= @title %></h1>
 
 <div class="table-wrapper">
  <table class="listing">
     <tr>
-      <th>種類</th>
-      <th>色</th>
-      <th>ジャンル</th>
-      <th>画像</th>
+      <th class="kind">種類</th>
+      <th class="color">色</th>
+      <th class="type">ジャンル</th>
+      <th class="image">画像</th>
+      <th class="tag">タグ</th>
     </tr>
     <% @clothes.each do |c| %>
       <tr>
@@ -60,6 +61,16 @@
           <%= type %>
         </td>
         <td><%= image_tag c.image.thumb.to_s %></td>
+        <td>
+          <%
+            if tag = Tag.find_by(clothe_id: c.id)
+              tag_content = tag.tag_name
+            else
+              tag_content = ""
+            end
+          %>
+          <%= tag_content %>
+        </td>
         <td class="actions">
           <%= link_to "編集", [ :edit, c ] %> |
           <%= link_to "削除", [ c ], method: :delete,
