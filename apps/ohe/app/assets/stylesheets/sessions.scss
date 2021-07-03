@@ -41,7 +41,7 @@ div#wrapper {
           }
 
           input[type="submit"] {
-            padding: $wide;
+            padding: $wide $wide * 2;
             font-size: medium;
             background-color: white;
             border-radius: 20px;
