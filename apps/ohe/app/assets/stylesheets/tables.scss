@@ -18,7 +18,7 @@ div.table-wrapper {
     padding: $moderate;
   }
 
-  table {
+  table.listing {
     margin: $moderate auto 0;
     border: solid $moderate black;
     tr {
@@ -28,11 +28,29 @@ div.table-wrapper {
       }
       th, td {
         border: 2px black solid;
-        padding: $narrow;
+        padding: $wide;
+      }
+      th.kind {
+        width: 150px;
+      }
+      th.color {
+        width: 30px;
+      }
+      th.type {
+        width: 100px;
+      }
+      th.tag {
+        width: 100px;
       }
       td.actions {
         text-align: center;
         color: $dark_gray;
+      }
+
+      td {
+        img {
+          padding: 10px;
+        }
       }
     }
 
