@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-  belongs_to :tag_map, class_name: "TagMap", foreign_key: "tag_id"
+  belongs_to :clothe, class_name: "Clothe", foreign_key: "clothe_id"
 end
