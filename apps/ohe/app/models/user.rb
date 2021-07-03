@@ -21,6 +21,9 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.password).is_password?(unencrypted_password) && self
   end
 
+  require 'open-uri'
+  require 'json'
+  
   def getWeatherForecast
     api_key = "db5db357d87b4994af16ed201cd5faaf"
     base_url = "http://api.openweathermap.org/data/2.5/forecast"
@@ -37,8 +40,10 @@ class User < ApplicationRecord
     forecasts = JSON.parse(JSON.pretty_generate(JSON.parse(response.read))) #hashに変換
 
     # from_timeとto_timeを3時間単位に丸める
-    from_time = Time.at((self.from_time.to_time.to_i / (3600 * 3)).round * (3600 * 3))
-    to_time = Time.at((self.to_time.to_time.to_i / (3600 * 3)).round * (3600 * 3))
+    from_time = Time.at((self.from_time.to_time.to_i / (3600 * 3)).round * (3600 * 3) + (3600 * 3) \
+                        , in: "+09:00")
+    to_time = Time.at((self.to_time.to_time.to_i / (3600 * 3)).round * (3600 * 3) + (3600 * 3) \
+                      , in: "+09:00")
 
     weather_icon_hash =
       { "01" => 0, "02" => 1, "03" => 2, "04" => 3,
@@ -48,12 +53,12 @@ class User < ApplicationRecord
     humidity_list = []
     weather_list = []
     forecasts["list"].each do |forecast|
-      if forecast["dt"] < from_time.to_i then next end
-      if to_time.to_i < forecast["dt"] then break end
+      if Time.at(forecast["dt"]) < from_time then next end
+      if to_time < Time.at(forecast["dt"]) then break end
 
-      weather_list.push(weather_icon_hash[hash["weather"][0]["icon"][0, 2]])
-      temperature_list.push(hash["main"]["temp"].round - 273)
-      humidity_list.push(hash["main"]["humidity"])
+      weather_list.push(weather_icon_hash[forecast["weather"][0]["icon"][0, 2]])
+      temperature_list.push(forecast["main"]["temp"].round - 273)
+      humidity_list.push(forecast["main"]["humidity"])
     end
 
     # 返り値(気温，湿度，天気を入れたハッシュ)
