@@ -38,3 +38,6 @@ yarn-debug.log*
 
 /**/db/schema.rb
 /**/Gemfile.lock
+
+**/.DS_Store
+public/uploads/**
