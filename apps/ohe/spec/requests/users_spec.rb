@@ -10,7 +10,7 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /users/new" do
     it '新規登録に成功すること' do
-      post users_path, params: { user: { email: "test@e.com", password: "1234"} }
+      post users_path, params: { user: { email: "test@f.com", password: "1234"} }
       expect(response).to have_http_status(302)
     end
   end
