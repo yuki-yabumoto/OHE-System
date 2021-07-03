@@ -10,30 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_051200) do
+ActiveRecord::Schema.define(version: 2021_06_12_063535) do
 
-  create_table "clothes", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "kind"
-    t.integer "color"
-    t.integer "type"
+  create_table "clothes_infos", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "clothes_type"
+    t.text "clothes_color"
+    t.text "clothes_gener"
+    t.text "clothes_picture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "password"
-    t.integer "gender"
-    t.string "place"
-    t.date "from_time"
-    t.date "to_time"
-    t.integer "favorite_color"
-    t.integer "favorite_type"
+  create_table "user_infos", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "color_combination1"
+    t.text "color_combination2"
+    t.text "style"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

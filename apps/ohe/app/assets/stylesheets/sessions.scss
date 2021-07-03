@@ -29,16 +29,22 @@ div#wrapper {
       form {
         div {
           padding: $wide;
+
           label {
             display: block;
             padding: $moderate 0;
           }
+
           input[type="text"], input[type="password"] {
             padding: $wide;
             width: 400px - $wide * 4;
           }
+
           input[type="submit"] {
             padding: $wide $wide * 2;
+            font-size: medium;
+            background-color: white;
+            border-radius: 20px;
           }
         }
       }
