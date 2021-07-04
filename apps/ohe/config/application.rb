@@ -24,6 +24,6 @@ module Ohe
     end
 
     config.hosts << '.example.com'
-    
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
