@@ -1,8 +1,8 @@
 <%#
   File Name   : users/_edit_account.html.erb
   Version     : 1.0
-  Designer    : 籔本悠紀
-  Date        : 2021.06.06
+  Designer    : 籔本悠紀,田中航生
+  Date        : 2021.0704
   Purpose     : ユーザー情報編集フォーム
 %>
 
@@ -11,10 +11,10 @@
 </div>
 <div>
   <p>性別</p>
-  <%= f.radio_button :gender, :male %>
-  <%= f.label :gender, "男性" %>
-  <%= f.radio_button :gender, :female %>
-  <%= f.label :gender, "女性" %>
+  <%= f.radio_button :gender, 0 %>
+  <%= f.label :gender, "男性", value: 0 %>
+  <%= f.radio_button :gender, 1 %>
+  <%= f.label :gender, "女性", value: 1 %>
 </div>
 <div id="place">
   <%= f.label "外出先" %>
