@@ -35,9 +35,9 @@
 <div id="datetime">
   <p>外出する時間帯</p>
   <p>
-    <%= f.datetime_field :from_time, min: Date.today, max: Date.today + 5, class: "form-control" %>
+    <%= f.datetime_field :from_time, min: DateTime.now, max: DateTime.now + 5, class: "form-control" %>
     <p>~</p>
-    <%= f.datetime_field :to_time, min: Date.today , max: Date.today + 5, class: "form-control" %>
+    <%= f.datetime_field :to_time, min: DateTime.now , max: DateTime.now + 5, class: "form-control" %>
   </p>
 </div>
 <div id="favorite">
