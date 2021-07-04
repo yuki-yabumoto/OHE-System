@@ -1,9 +1,9 @@
 ##
-##  File Name        : coordinate.rb
-##  Version        : V1.2
+##  File Name       : coordinate.rb
+##  Version         : v1.2
 ##  Designer        : 京増ほのか
-##  Date        : 2021.06.28
-##  Purpose           : コーディネート提案
+##  Date            : 2021.06.28
+##  Purpose         : コーディネート提案
 ##
 
 class Coordinate < ApplicationRecord
@@ -29,11 +29,11 @@ class Coordinate < ApplicationRecord
         end
 
         #アクセサリーの選択と投票
-        if @accesary.count != 0 then
-            @coordination_option[i+j+k+l+m].accesary = @accesary[k]
-            if @accesary[k].color == @favorite_color then @coordination_option[i+j+k+l+m].votes += 1
+        if @accessory.count != 0 then
+            @coordination_option[i+j+k+l+m].accessory = @accessory[k]
+            if @accessory[k].color == @favorite_color then @coordination_option[i+j+k+l+m].votes += 1
             else @coordination_option[i+j+k+l+m].votes -= 2 end
-            if @accesary[k].type == @favorite_type then @coordination_option[i+j+k+l+m].votes += 2
+            if @accessory[k].type == @favorite_type then @coordination_option[i+j+k+l+m].votes += 2
             else @coordination_option[i+j+k+l+m].votes -= 2 end
         end
 
@@ -60,7 +60,7 @@ class Coordinate < ApplicationRecord
         #再帰呼び出しによる繰り返し処理
         if m < (@outer.count-1) then voting(i, j, k, l, m+1)
         elsif l < (@tops.count-1) then voting(i, j, k, l+1, 0)
-        elsif k < (@accesary.count-1) then voting(i, j, k+1, 0, 0)
+        elsif k < (@accessory.count-1) then voting(i, j, k+1, 0, 0)
         elsif j < (@shoes.count-1) then voting(i, j+1, 0, 0, 0)
         elsif i < (@bottoms.count-1) then voting(i+1, 0, 0, 0, 0)
         else return 0 end
@@ -75,7 +75,7 @@ class Coordinate < ApplicationRecord
         @discomfort_index = 0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3
         
         #構造体クラス(コーディネート)、メンバ(トップス,アウター,ボトムス,シューズ,アクセサリー,投票数)
-        @coordination = Struct.new("Coordination", :tops,:outer, :bottoms, :shoes, :accesary, :votes)
+        @coordination = Struct.new("Coordination", :tops, :outer, :bottoms, :shoes, :accessory, :votes)
 
         #コーディネート候補の空の配列
         @coordination_option = []
@@ -114,11 +114,11 @@ class Coordinate < ApplicationRecord
                 @tops = Clothe.where(user_id: id, kind: 0)
                 outer = []
             elsif weather == 2 then #トップス(長袖)
-                @tops = Clothes.where(user_id: id, kind: 1)
+                @tops = Clothe.where(user_id: id, kind: 1)
                 @outer = []
             else #トップス(長袖)、アウター(薄手)
-                @tops = Clothes.where(user_id: id, kind: 1)
-                @outer = Clothes.where(user_id: id, kind: 2)
+                @tops = Clothe.where(user_id: id, kind: 1)
+                @outer = Clothe.where(user_id: id, kind: 2)
             end
         else #トップス(半袖)
             @tops = Clothe.where(user_id: id, kind: 0)
@@ -128,7 +128,7 @@ class Coordinate < ApplicationRecord
         #ボトムス、シューズ、アクセサリーを全ての中から選ぶ
         @bottoms = Clothe.where(user_id: id, kind: 5)
         @shoes = Clothe.where(user_id: id, kind: 4)
-        @accesary = Clothe.where(user_id: id, kind: 6)
+        @accessory = Clothe.where(user_id: id, kind: 6)
         
         if @tops.count == 0 or @bottoms.count == 0 or @shoes.count == 0 then
             @e1 = '服の登録が十分にできていません。服を登録してください。'
@@ -162,10 +162,10 @@ class Coordinate < ApplicationRecord
             else @outer = 'NoOuter' end
             @bottoms = @coordination_final.bottoms.kind
             @bottoms_color = @coordination_final.bottoms.color
-            if @coordination_final.accesary != nil then
-                @accesary = @coordination_final.accesary.kind
-                @accesary_color = @coordination_final.accesary.color
-            else @accesary = 'NoAccesary' end
+            if @coordination_final.accessory != nil then
+                @accessory = @coordination_final.accessory.kind
+                @accessory_color = @coordination_final.accessory.color
+            else @accessory = 'NoAccesary' end
             @shoes = @coordination_final.shoes.kind
             @shoes_color = @coordination_final.shoes.color
             return @coordination_final
