@@ -1,6 +1,14 @@
+<%#
+    File Name    : _edit_clothe.html.erb
+    Version      : v1.0
+    Designer     : 籔本悠紀
+    Date         : 2021.06.29
+    Purpose      : 服情報追加画面のERBテンプレート
+%>
+
 <% @title = "服情報編集" %>
 <h1><%= @title %></h1>
-    
+
 <div id="generic-form">
   <%= form_with model: @clothe, url: :clothes do |f| %>
     <%= render "edit_clothe", f: f %>
