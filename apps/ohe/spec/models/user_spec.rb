@@ -27,5 +27,11 @@ describe User do
       weather = user.getWeatherForecast
       expect(weather[:weather]).not_to eq nil
     end
+
+    example "アイコンが得られるかどうか" do
+      user = User.new(email: "test@example.com", place: "Tokyo", from_time: Time.now.to_date, to_time: Time.now.to_date + 3600)
+      weather = user.getWeatherForecast
+      expect(weather[:icon]).not_to eq nil
+    end
   end
 end
