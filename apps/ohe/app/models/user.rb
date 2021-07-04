@@ -52,10 +52,16 @@ class User < ApplicationRecord
     temperature_list = []
     humidity_list = []
     weather_list = []
+    icon = nil
     forecasts["list"].each do |forecast|
       if Time.at(forecast["dt"]) < from_time then next end
       if to_time < Time.at(forecast["dt"]) then break end
 
+      if icon
+        icon = icon < forecast["weather"][0]["icon"] ? forecast["weather"][0]["icon"] : icon
+      else
+        icon = forecast["weather"][0]["icon"]
+      end
       weather_list.push(weather_icon_hash[forecast["weather"][0]["icon"][0, 2]])
       temperature_list.push(forecast["main"]["temp"].round - 273)
       humidity_list.push(forecast["main"]["humidity"])
@@ -64,7 +70,8 @@ class User < ApplicationRecord
     # 返り値(気温，湿度，天気を入れたハッシュ)
     return { :min_temperature => temperature_list.min,
              :max_humidity => humidity_list.max,
-             :weather => weather_list.max }
+             :weather => weather_list.max,
+             :icon => icon }
   end
 
   VALID_EMAIL_REGEX = /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i
