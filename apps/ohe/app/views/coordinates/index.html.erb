@@ -1,0 +1,90 @@
+<%#
+  File Name     : index.html.erb
+  Version       : v1.0
+  Designer      : 中馬，籔本
+  Date          : 2021.07.04
+  Purpose       : コーディネートの履歴を表示
+%>
+
+<div align="center">
+    <h1>履歴表示画面</h1>
+</div>
+<div class="table-wrapper">
+  <table class = "listing">
+    <tr>
+      <th>日付</th>
+      <th>トップス</th>
+      <th>アウター</th>
+      <th>シューズ</th>
+      <th>ボトム</th>
+      <th>アクセサリー</th>
+    </tr>
+    <% @coordinates.each do |c| %>
+      <tr>
+        <td><%= c.created_at %></td>
+        <% if tops = Clothe.find_by(id: c.tops) %>
+          <td class="img">
+            <% if tops.image %>
+              <%= image_tag tops.image.thumb.to_s %>
+            <% else %>
+              <p>No image</p>
+            <% end %>
+          </td>
+        <% else %>
+          <td><p>なし</p></td>
+        <% end %>
+        <% if outer = Clothe.find_by(id: c.outer) %>
+          <td class="img">
+            <% if outer.image %>
+              <%= image_tag outer.image.thumb.to_s %>
+            <% else %>
+              <p>No image</p>
+            <% end %>
+          </td>
+        <% else %>
+          <td><p>なし</p></td>
+        <% end %>
+        <% if bottoms = Clothe.find_by(id: c.bottoms) %>
+          <td class="img">
+            <% if bottoms.image %>
+              <%= image_tag bottoms.image.thumb.to_s %>
+            <% else %>
+              <p>No image</p>
+            <% end %>
+          </td>
+        <% else %>
+          <td><p>なし</p></td>
+        <% end %>
+        <% if shoes =  Clothe.find_by(id: c.shoes)%>
+          <td class="img">
+            <% if shoes.image %>
+              <%= image_tag shoes.image.thumb.to_s %>
+            <% else %>
+              <p>No image</p>
+            <% end %>
+          </td>
+        <% else %>
+          <td><p>なし</p></td>
+        <% end %>
+        <% if accessory = Clothe.find_by(id: c.accessory) %>
+          <td class="img">
+            <% if accessory.image %>
+              <%= image_tag accessory.image.thumb.to_s %>
+            <% else %>
+              <p>No image</p>
+            <% end %>
+          </td>
+        <% else %>
+          <td><p>なし</p></td>
+        <% end %>
+        <td class = "actions">
+          <%= link_to "削除", [ c ], method: :delete,
+          data: { confirm: "本当に削除しますか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+
+

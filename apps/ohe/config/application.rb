@@ -9,6 +9,7 @@ module Ohe
     config.load_defaults 6.1
 
     config.time_zone = "Tokyo"
+    config.active_record.default_timezone = :local
     config.i18n.load_path +=
       Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
     config.i18n.default_locale = :ja
@@ -21,5 +22,8 @@ module Ohe
       g.controller_specs false
       g.view_specs false
     end
+
+    config.hosts << '.example.com'
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
