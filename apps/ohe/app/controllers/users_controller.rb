@@ -2,7 +2,7 @@
 ## File Name    : users_controller.rb
 ## Version      : 1.1
 ## Designer     : 籔本悠紀,中森楓太,田中航生
-## Date         : 2021.06.21
+## Date         : 2021.0704
 ## Purpose      : Userのコントローラー
 ##
 
@@ -13,7 +13,7 @@ class UsersController < Base
 
   def create
     @user = User.new(params[:user])
-    ##パスワード暗号化
+    #パスワード暗号化
     @user.hashed_password = params[:user][:password]
     if @user.save
       flash.notice = "アカウントを作成しました"
@@ -31,8 +31,10 @@ class UsersController < Base
   def update
     @user = current_user
     if @user.update(user_params)
+      flash.notice = "ユーザーの情報を登録しました"
       redirect_to :index
     else
+      flash.alert = "入力されていない項目があります"
       render action:"edit"
     end
   end
