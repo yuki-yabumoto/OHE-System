@@ -12,8 +12,8 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password
       t.integer :gender
       t.string :place
-      t.date :from_time
-      t.date :to_time
+      t.datetime :from_time
+      t.datetime :to_time
       t.integer :favorite_color
       t.integer :favorite_type
 
