@@ -2,7 +2,7 @@
 ## File Name    : clothes_controller.rb
 ## Version      : v3.0
 ## Designer     : 籔本悠紀
-## Date         : 2021.07.03
+## Date         : 2021.07.05
 ## Purpose      : Clotheのコントローラー
 ##
 
@@ -26,15 +26,6 @@ class ClothesController < Base
     @clothe = Clothe.new
   end
 
-  def show
-    clothe = Clothe.find(params[:id])
-    redirect_to [ :edit, clothe ]
-  end
-
-  def edit
-    @clothe = Clothe.find(params[:id]);
-  end
-
   def create
     user = current_user
     param = params[:clothe]
@@ -45,8 +36,14 @@ class ClothesController < Base
 
     @clothe = Clothe.new(param)
     if @clothe.save
-      @tag = Tag.new(clothe_id: @clothe.id, tag_name: tag_name)
-      @tag.save
+      if tag_name
+        if !tag= Tag.find_by(tag_name: tag_name)
+          tag = Tag.new(tag_name: tag_name)
+          tag.save
+        end
+        tag_map = TagMap.new(clothe_id: @clothe.id, tag_id: tag.id)
+        tag_map.save
+      end
       flash.notice = "服を追加しました"
       redirect_to :clothes
     else
@@ -55,11 +52,20 @@ class ClothesController < Base
     end
   end
 
-  def destroy
+  def show
+    clothe = Clothe.find(params[:id])
+    redirect_to [ :edit, clothe ]
+  end
+
+  def edit
+    @clothe = Clothe.find(params[:id]);
+  end
+
+ def destroy
     clothe = Clothe.find(params[:id])
     clothe.destroy!
-    if tag = Tag.find_by(clothe_id: params[:id])
-      tag.destroy!
+    if tag_map = TagMap.find_by(clothe_id: params[:id])
+      tag_map.destroy!
     end
     flash.notice = "服を削除しました"
     redirect_to :clothes
