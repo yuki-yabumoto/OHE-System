@@ -22,8 +22,8 @@ class ClothesController < Base
 
     # 画面に表示するタグのリストを作成
     @tag_list = [["選択してください", nil]]
-    Tag.all.order('tag_name').each do |tag|
-      @tag_list.push([ tag.tag_name, tag.id ])
+    Tag.all.order('name').each do |tag|
+      @tag_list.push([ tag.name, tag.id ])
     end
     render action: "index"
   end
@@ -43,8 +43,8 @@ class ClothesController < Base
     @clothe = Clothe.new(param)
     if @clothe.save
       if tag_name
-        if !tag= Tag.find_by(tag_name: tag_name)
-          tag = Tag.new(tag_name: tag_name)
+        if !tag= Tag.find_by(name: tag_name)
+          tag = Tag.new(name: tag_name)
           tag.save
         end
         tag_map = TagMap.new(clothe_id: @clothe.id, tag_id: tag.id)
@@ -71,7 +71,11 @@ class ClothesController < Base
     clothe = Clothe.find(params[:id])
     clothe.destroy!
     if tag_map = TagMap.find_by(clothe_id: params[:id])
+      tag_id = tag_map.tag_id
       tag_map.destroy!
+      if !TagMap.find_by(id: tag_id)
+        Tag.find(tag_id).destroy
+      end
     end
     flash.notice = "服を削除しました"
     redirect_to :clothes

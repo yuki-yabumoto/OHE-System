@@ -86,7 +86,7 @@
         <td>
           <%
             if tag_map = TagMap.find_by(clothe_id: c.id)
-              tag_content = Tag.find_by(id: tag_map.tag_id).tag_name
+              tag_content = Tag.find_by(id: tag_map.tag_id).name
             else
               tag_content = ""
             end
