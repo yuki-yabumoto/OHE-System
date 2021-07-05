@@ -51,7 +51,8 @@
 
       <tr>
         <td>アウター</td>
-          <% if outer = Clothe.find_by(id: @coordinate.outer.id) %>
+          <% if @coordinate.outer != nil %>
+            <% outer = Clothe.find_by(id: @coordinate.outer.id) %>
             <td class="img">
               <%= image_tag outer.image.thumb.to_s %>
             </td>
@@ -96,7 +97,8 @@
 
       <tr>
         <td>アクセサリー</td>
-          <% if accessory = Clothe.find_by(id: @coordinate.accessory.id) %>
+          <% if @coordinate.accessory != nil %>
+            <% accessory = Clothe.find_by(id: @coordinate.accessory.id) %>
             <td class="img">
               <%= image_tag accessory.image.thumb.to_s %>
             </td>
