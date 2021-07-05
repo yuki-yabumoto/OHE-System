@@ -37,7 +37,7 @@ class CoordinatesController < Base
             param['bottoms'] = @coordinate.bottoms != nil ?  @coordinate.bottoms.id : nil
             param['outer'] = @coordinate.outer != nil ? @coordinate.outer.id : nil
             param['shoes'] = @coordinate.shoes != nil ? @coordinate.shoes.id : nil
-            param['accessory'] = @coordinate.accessory.id != nil ? @coordinate.accessory.id : nil
+            param['accessory'] = @coordinate.accessory != nil ? @coordinate.accessory.id : nil
             c = Coordinate.new(param)
             c.save
         end

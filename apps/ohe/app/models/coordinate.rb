@@ -154,20 +154,22 @@ class Coordinate < ApplicationRecord
             @e1 = '服の登録が十分にできていません。服を登録してください。'
             return @e1
         else 
-            @tops = @coordination_final.tops.kind
-            @tops_color = @coordination_final.tops.color
-            if @coordination_final.outer != nil then
-                @outer = @coordination_final.outer.kind
-                @outer_color = @coordination_final.outer.color
-            else @outer = 'NoOuter' end
-            @bottoms = @coordination_final.bottoms.kind
-            @bottoms_color = @coordination_final.bottoms.color
-            if @coordination_final.accessory != nil then
-                @accessory = @coordination_final.accessory.kind
-                @accessory_color = @coordination_final.accessory.color
-            else @accessory = 'NoAccesary' end
-            @shoes = @coordination_final.shoes.kind
-            @shoes_color = @coordination_final.shoes.color
+            #test用
+            #@tops = @coordination_final.tops.kind
+            #@tops_color = @coordination_final.tops.color
+            #if @coordination_final.outer != nil then
+            #    @outer = @coordination_final.outer.kind
+            #    @outer_color = @coordination_final.outer.color
+            #else @outer = 'NoOuter' end
+            #@bottoms = @coordination_final.bottoms.kind
+            #@bottoms_color = @coordination_final.bottoms.color
+            #if @coordination_final.accessory != nil then
+            #    @accessory = @coordination_final.accessory.kind
+            #    @accessory_color = @coordination_final.accessory.color
+            #else @accessory = 'NoAccesary' end
+            #@shoes = @coordination_final.shoes.kind
+            #@shoes_color = @coordination_final.shoes.color
+            #最終的なコーディネート
             return @coordination_final
         end
     end
