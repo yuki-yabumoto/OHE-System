@@ -9,7 +9,16 @@
 class ClothesController < Base
   def index
     user = current_user
-    @clothes = Clothe.where(user_id: user.id)
+    param = {}
+    param['user_id'] = user.id
+    if params['kind'] || params['color'] || params['type']
+      %w[kind color type].each do |key|
+        if !params[key].empty?
+          param[key] = params[key]
+        end
+      end
+    end
+    @clothes = Clothe.where(param)
     render action: "index"
   end
 

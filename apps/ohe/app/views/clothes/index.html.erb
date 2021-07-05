@@ -11,7 +11,7 @@
 
 <div class="search">
   <p>絞込み検索</p>
-  <%= form_with model: @clothe, url: :clothes do |f| %>
+  <%= form_with method: :get do |f| %>
     <%= f.label "種類" %>
     <%= f.select :kind,
                  [["選択してください", nil ], ["トップス(半袖)", 0], ["トップス(長袖)", 1], ["アウター(薄手)", 2],
@@ -25,7 +25,7 @@
     <%= f.select :type,
                  [["選択してください", nil], ["カジュアル系", 0], ["ロック系", 1], ["ストリート系", 2], ["ガーリッシュ系", 3]]
     %>
-    <%= button_to "検索b", { controller: 'clothes', action: 'index' }, { method: :post } %>
+    <%= button_to "検索", { controller: 'clothes', action: 'index' }, { method: :get } %>
   <% end %>
 </div>
 
