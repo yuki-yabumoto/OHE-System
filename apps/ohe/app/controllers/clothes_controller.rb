@@ -11,14 +11,20 @@ class ClothesController < Base
     user = current_user
     param = {}
     param['user_id'] = user.id
-    if params['kind'] || params['color'] || params['type']
-      %w[kind color type].each do |key|
-        if !params[key].empty?
-          param[key] = params[key]
-        end
-      end
-    end
+
+    # 絞込み条件を抽出
+    if params['kind'] && !params['kind'].empty? then param['kind'] = params['kind'] end
+    if params['color'] && !params['color'].empty? then param['color'] = params['color'] end
+    if params['type'] && !params['type'].empty? then param['type'] = params['type'] end
+    if params['tag_id'] && !params['tag_id'].empty? then param['id'] = TagMap.where(tag_id: params['tag_id']) end
+
     @clothes = Clothe.where(param)
+
+    # 画面に表示するタグのリストを作成
+    @tag_list = [["選択してください", nil]]
+    Tag.all.order('tag_name').each do |tag|
+      @tag_list.push([ tag.tag_name, tag.id ])
+    end
     render action: "index"
   end
 

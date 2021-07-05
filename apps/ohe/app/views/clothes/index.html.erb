@@ -1,8 +1,8 @@
 <%#
   File Name     : clothes/index.html.erb
-  Version       : v1.3
+  Version       : v1.4
   Designer      : 籔本悠紀
-  Date          : 2021.07.03
+  Date          : 2021.07.05
   Purpose       : 登録した服情報の一覧を表示する画面
 %>
 
@@ -25,6 +25,8 @@
     <%= f.select :type,
                  [["選択してください", nil], ["カジュアル系", 0], ["ロック系", 1], ["ストリート系", 2], ["ガーリッシュ系", 3]]
     %>
+    <%= f.label "タグ" %>
+    <%= f.select :tag_id, @tag_list %>
     <%= button_to "検索", { controller: 'clothes', action: 'index' }, { method: :get } %>
   <% end %>
 </div>
