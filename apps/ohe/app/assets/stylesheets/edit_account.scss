@@ -9,9 +9,10 @@
 @import "colors";
 @import "dimensions";
 
-#datetime {
-  p {
-    padding: $moderate;
-    display: inline-block;
+div#generic-form {
+  div.radio_buttons {
+    div.gender{
+      display: inline-block;
+    }
   }
 }
