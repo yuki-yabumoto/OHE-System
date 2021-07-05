@@ -2,7 +2,7 @@
 ## File Name      : application_controller.rb
 ## Version        : v1.0
 ## Designer       : 籔本悠紀
-## Date           : 2021.06.28
+## Date           : 2021.07.05
 ## Purpose        : アプリケーション全体のコントローラー
 ##
 
@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   rescue_from Forbidden, with: :rescue403
   rescue_from IpAddressRejected, with: :rescue403
   rescue_from ActiveRecord::RecordNotFound, with: :rescue404
+  rescue_from ActionController::RoutingError, with: :rescue404
 
   private def rescue403(e)
     @exception = e
@@ -29,6 +30,6 @@ class ApplicationController < ActionController::Base
   end
 
   private def rescue500(e)
-    render "errors/internal_sever_error", status: 500
+    render "errors/internal_server_error", status: 500
   end
 end
