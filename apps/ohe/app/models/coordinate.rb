@@ -128,7 +128,7 @@ class Coordinate < ApplicationRecord
         #ボトムス、シューズ、アクセサリーを全ての中から選ぶ
         @bottoms = Clothe.where(user_id: id, kind: 5)
         @shoes = Clothe.where(user_id: id, kind: 4)
-        @accesary = Clothe.where(user_id: id, kind: 6)
+        @accessory = Clothe.where(user_id: id, kind: 6)
         
         if @tops.count == 0 or @bottoms.count == 0 or @shoes.count == 0 then
             @e1 = '服の登録が十分にできていません。服を登録してください。'
