@@ -1,8 +1,8 @@
 /*
 ** File Name    : layout.scss
-** Version      : v1.0
+** Version      : v1.2
 ** Designer     : 籔本悠紀
-** Date         : 2021.06.29
+** Date         : 2021.07.05
 ** Purpose      : 基本レイアウトで使用するスタイルシート
  */
 
@@ -66,4 +66,16 @@ header {
 
 span.mark {
   color: $red;
+}
+
+div.search {
+  border: solid 4px black;
+  width: 800px;
+  margin: $wide * 2 auto;
+  padding: 20px;
+  border-radius: 20px;
+  p {
+    font-weight: bold;
+    font-size: large;
+  }
 }

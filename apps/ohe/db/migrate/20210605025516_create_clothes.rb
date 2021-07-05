@@ -12,7 +12,6 @@ class CreateClothes < ActiveRecord::Migration[6.1]
       t.integer :kind
       t.integer :color
       t.integer :type
-      # t.binary :image, limit: 1.megabyte
 
       t.timestamps
     end
