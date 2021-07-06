@@ -9,6 +9,30 @@
 <% @title = "OHEシステムトップページ" %>
 <h1><%= @title %></h1>
 
-<div>
-  <%= link_to "コーディネートを提案", :new_coordinate  %>
+<div class="index">
+  <p>
+    OHE(お天気で服選ぶよ)システムへようこそ<br>
+    OHEシステムはユーザが登録した服をもとに，外出時間帯の天気に合わせてコーディネートを提案します
+  </p>
+  <% if current_user %>
+    <div class="button">
+    <%= button_to "コーディネートを提案", { controller: 'coordinates', action: 'new' }, {method: :get} %>
+    <p>* 服の登録が十分でない場合<br>コーディネートが提案できない場合があります</p>
+    </div>
+    <div class="button">
+      <%= button_to "登録済みの服一覧", { controller: 'clothes', action: 'index' }, { method: :get } %>
+    </div>
+    <div class="button">
+    <%= button_to "過去のコーディネート一覧", { controller: 'coordinates', action: 'index' }, { method: :get } %>
+    </div>
+  <% else %>
+    <div class="button">
+      <p>既にアカウントを持っている方はこちら</p>
+     <%= button_to 'ログイン', { controller: 'sessions', action: 'new' }, { method: :get } %>
+    </div>
+    <div class="button">
+      <p>まだアカウントを持っていない方はこちら</p>
+      <%= button_to '新規登録', { controller: 'users', action: 'new' }, { method: :get } %>
+    </div>
+  <% end %>
 </div>
