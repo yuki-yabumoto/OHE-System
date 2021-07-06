@@ -19,6 +19,7 @@ class ClothesController < Base
     if params['tag_id'] && !params['tag_id'].empty? then param['id'] = TagMap.where(tag_id: params['tag_id']) end
 
     @clothes = Clothe.where(param)
+    @clothes = @clothes.page(params[:page])
 
     # 画面に表示するタグのリストを作成
     @tag_list = [["選択してください", nil]]
@@ -67,16 +68,53 @@ class ClothesController < Base
     @clothe = Clothe.find(params[:id]);
   end
 
+  private def destroy_tag(clothe_id)
+    tag_map = TagMap.find_by(clothe_id: clothe_id)
+    tag_id = tag_map.tag_id
+    tag_map.destroy!
+    if !TagMap.find_by(tag_id: tag_id)
+      Tag.find(tag_id).destroy
+    end
+  end
+
+  def update
+    @clothe = Clothe.find(params[:id])
+    param = params[:clothe]
+    tag_name = param[:tag]
+    param.delete(:tag)
+    @clothe.assign_attributes(params[:clothe])
+    if @clothe.save
+      if !tag_name.empty? && tag_name != Tag.find(TagMap.find_by(clothe_id: params[:id]).tag_id)
+        destroy_tag(params[:id])
+        if tag = Tag.find_by(name: tag_name)
+          tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
+          tag_map.save
+        else
+          tag = Tag.new(name: tag_name)
+          tag.save
+          tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
+          tag_map.save
+        end
+      end
+      flash.notice = "服情報を更新しました"
+      redirect_to "/clothes?"
+    else
+      flash.alert = "服情報の更新に失敗しました"
+      render action: "edit"
+    end
+  end
+
  def destroy
     clothe = Clothe.find(params[:id])
     clothe.destroy!
-    if tag_map = TagMap.find_by(clothe_id: params[:id])
-      tag_id = tag_map.tag_id
-      tag_map.destroy!
-      if !TagMap.find_by(id: tag_id)
-        Tag.find(tag_id).destroy
-      end
-    end
+    destroy_tag(params[:id])
+    # if tag_map = TagMap.find_by(clothe_id: params[:id])
+    #   tag_id = tag_map.tag_id
+    #   tag_map.destroy!
+    #   if !TagMap.find_by(tag_id: tag_id)
+    #     Tag.find(tag_id).destroy
+    #   end
+    # end
     flash.notice = "服を削除しました"
     redirect_to :clothes
   end

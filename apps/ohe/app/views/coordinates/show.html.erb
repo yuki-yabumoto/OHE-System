@@ -45,14 +45,14 @@
             <p><%= " 色 : #{types[tops.type]}" %></p>
           </td>
           <% else %>
-            <td><p>なし</p></td>
+            <td colspan="2"><p>なし</p></td>
           <% end %>
       </tr>
 
       <tr>
         <td>アウター</td>
           <% if @coordinate.outer != nil %>
-          <% outer = Clothe.find_by(id: @coordinate.outer.id) %>
+            <% outer = Clothe.find_by(id: @coordinate.outer.id) %>
             <td class="img">
               <%= image_tag outer.image.thumb.to_s %>
             </td>
@@ -61,7 +61,7 @@
               <p><%= " 色 : #{types[outer.type]}" %></p>
             </td>
           <% else %>
-            <td><p>なし</p></td>
+            <td colspan="2"><p>なし</p></td>
           <% end %>
       </tr>
 
@@ -76,7 +76,7 @@
               <p><%= " 色 : #{types[bottoms.type]}" %></p>
             </td>
           <% else %>
-            <td><p>なし</p></td>
+            <td colspan="2"><p>なし</p></td>
           <% end %>
       </tr>
 
@@ -91,14 +91,14 @@
             <p><%= " 色 : #{types[shoes.type]}" %></p>
           </td>
           <% else %>
-            <td><p>なし</p></td>
+            <td colspan="2"><p>なし</p></td>
           <% end %>
       </tr>
 
       <tr>
         <td>アクセサリー</td>
           <% if @coordinate.accessory != nil %>
-          <% accessory = Clothe.find_by(id: @coordinate.accessory.id) %>
+            <% accessory = Clothe.find_by(id: @coordinate.accessory.id) %>
             <td class="img">
               <%= image_tag accessory.image.thumb.to_s %>
             </td>
@@ -107,7 +107,7 @@
               <p><%= " 色 : #{types[accessory.type]}" %></p>
             </td>
           <% else %>
-            <td><p>なし</p></td>
+            <td colspan="2"><p>なし</p></td>
           <% end %>
       </tr>
     </table>

@@ -11,22 +11,7 @@
 
 div#wrapper {
     div#container {
-      div#flash {
-        text-align: center;
-        span.notice, span.alert {
-          display: inline-block;
-          padding: $moderate $wide;
-          margin: 0 $wide;
-          font-size: $normal;
-          color: $very_light_gray;
-        }
-        span.notice {
-          background-color: $green;
-        }
-        span.alert {
-          background-color: $red;
-        }
-      }
+      text-align: center;
       h1 {
         margin: 0;
         padding: 9px 6px;
@@ -36,4 +21,21 @@ div#wrapper {
         color: $gray;
       }
     }
+}
+
+div#flash {
+  float: left;
+  span.notice, span.alert {
+    display: inline-block;
+    padding: $moderate $wide;
+    margin: 0 $wide;
+    font-size: $normal;
+    color: $very_light_gray;
+  }
+  span.notice {
+    background-color: $green;
+  }
+  span.alert {
+    background-color: $red;
+  }
 }
