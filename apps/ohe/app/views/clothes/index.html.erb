@@ -1,8 +1,8 @@
 <%#
   File Name     : clothes/index.html.erb
-  Version       : v1.4
+  Version       : v1.5
   Designer      : 籔本悠紀
-  Date          : 2021.07.05
+  Date          : 2021.07.06
   Purpose       : 登録した服情報の一覧を表示する画面
 %>
 
@@ -32,6 +32,7 @@
 </div>
 
 <div class="table-wrapper">
+  <%= paginate @clothes %>
   <table class="listing">
     <tr>
       <th class="kind">種類</th>
@@ -40,7 +41,7 @@
       <th class="image">画像</th>
       <th class="tag">タグ</th>
     </tr>
-    <% if @clothes.count == 0 %>
+    <% if @clothes.empty? %>
       <td colspan="5">服の情報がありません</td>
     <% else %>
       <% @clothes.each do |c| %>
@@ -105,4 +106,5 @@
       <% end %>
     <% end %>
   </table>
+  <%= paginate @clothes %>
 </div>
