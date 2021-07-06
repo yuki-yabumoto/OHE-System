@@ -1,0 +1,19 @@
+<%#
+  File Name     : clothes/new.html.erb
+  Version       : 1.0
+  Designer      : 鶴田
+  Date          : 2021.06.26
+  Purpose       : エラーを表示
+%>
+
+
+
+<% if model.errors.any? %>
+    <div class = "alert alert-warning">
+        <ul>
+            <% model.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
