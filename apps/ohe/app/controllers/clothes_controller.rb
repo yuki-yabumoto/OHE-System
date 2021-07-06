@@ -19,6 +19,7 @@ class ClothesController < Base
     if params['tag_id'] && !params['tag_id'].empty? then param['id'] = TagMap.where(tag_id: params['tag_id']) end
 
     @clothes = Clothe.where(param)
+    @clothes = @clothes.page(params[:page])
 
     # 画面に表示するタグのリストを作成
     @tag_list = [["選択してください", nil]]
