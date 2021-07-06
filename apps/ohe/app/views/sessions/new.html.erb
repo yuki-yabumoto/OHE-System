@@ -7,9 +7,10 @@
 %>
 
 <% @title = "ログイン" %>
-<h1><%= @title %></h1>
 
 <div id="login-form">
+  <h1><%= @title %></h1>
+
   <%= form_with model: @form, url: :session do |f| %>
     <div>
       <%= f.label :email, "メールアドレス" %>
