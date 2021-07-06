@@ -29,7 +29,11 @@ class CoordinatesController < Base
         @coordinate = Coordinate.new
         @coordinate = @coordinate.suggest(@weather[:min_temperature], @weather[:max_humidity] \
                                 , @weather[:weather], user.id)
-        if !@coordinate.kind_of?(String)
+        if @coordinate.kind_of?(String)
+            # エラーが起きた時はflashで通知
+            flash.alert = @coordinate
+            render "top/index"
+        else
             # エラーが起きてないとき，コーディネートをDBに保存
             param = {}
             param['user_id'] = user.id
@@ -37,11 +41,11 @@ class CoordinatesController < Base
             param['bottoms'] = @coordinate.bottoms != nil ?  @coordinate.bottoms.id : nil
             param['outer'] = @coordinate.outer != nil ? @coordinate.outer.id : nil
             param['shoes'] = @coordinate.shoes != nil ? @coordinate.shoes.id : nil
-            param['accessory'] = @coordinate.accessory.id != nil ? @coordinate.accessory.id : nil
+            param['accessory'] = @coordinate.accessory != nil ? @coordinate.accessory.id : nil
             c = Coordinate.new(param)
             c.save
+            render action: "show"
         end
-        render action: "show"
     end
 
     def show

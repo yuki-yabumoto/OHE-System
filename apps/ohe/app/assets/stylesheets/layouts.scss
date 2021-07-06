@@ -1,8 +1,8 @@
 /*
 ** File Name    : layout.scss
-** Version      : v1.0
+** Version      : v1.2
 ** Designer     : 籔本悠紀
-** Date         : 2021.06.29
+** Date         : 2021.07.05
 ** Purpose      : 基本レイアウトで使用するスタイルシート
  */
 
@@ -43,27 +43,45 @@ header {
   background-color: rgba(255, 255, 255, 0);
   color: $black;
   text-align: center;
+  div#top {
+    float: left;
+  }
   span.logo-mark {
     font-size: xx-large;
-    width: 100%;
-    text-align: center;
+    width: 200px;
+    //text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   div#sessions {
     float: right;
-    form.button_to {
-      input {
-        padding: $wide;
-        font-size: medium;
-        border: none;
-        background-color: white;
-        border-radius: 20px;
-      }
-      display: inline-block;
-    }
     margin-left: $wide;
   }
 }
 
 span.mark {
   color: $red;
+}
+
+div.search {
+  border: solid 4px black;
+  width: 800px;
+  margin: $wide * 2 auto;
+  padding: 20px;
+  border-radius: 20px;
+  p {
+    font-weight: bold;
+    font-size: large;
+  }
+}
+
+form.button_to {
+  input {
+    padding: $wide;
+    font-size: medium;
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+  }
+  display: inline-block;
 }

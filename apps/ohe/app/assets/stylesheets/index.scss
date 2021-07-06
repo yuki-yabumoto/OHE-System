@@ -1,0 +1,22 @@
+/*
+** File Name    : index.scss
+** Version      : v1.0
+** Designer     : 籔本悠紀
+** Date         : 2021.07.29
+** Purpose      : divのindexクラスのスタイルシート
+ */
+
+@import "colors";
+@import "dimensions";
+
+div.index {
+  padding: $wide * 2;
+  font-size: medium;
+  p {
+    font-size: large;
+  }
+  div.button {
+    margein: $wide;
+    padding: $wide * 2;
+  }
+}

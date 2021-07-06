@@ -14,7 +14,7 @@
     <%= render "add_clothe", f: f %>
     <div>
       <%= f.submit "登録" %>
-      <% link_to "キャンセル", :index %>
     </div>
   <% end %>
+  <%= button_to "キャンセル", { controller: 'clothes', action: 'index' }, { method: :get } %>
 </div>

@@ -1,8 +1,8 @@
 <%#
   File Name     : clothes/_add_clothe.html.erb
-  Version       : 1.0
+  Version       : v1.1
   Designer      : 籔本悠紀
-  Date          : 2021.06.06
+  Date          : 2021.07.03
   Purpose       : 新しい服を登録するフォーム
 %>
 
@@ -37,4 +37,9 @@
 <div>
   <%= f.label "服の画像を追加" %>
   <%= f.file_field :image %>
+</div>
+
+<div>
+  <%= f.label "タグ" %>
+  <%= f.text_field :tag %>
 </div>

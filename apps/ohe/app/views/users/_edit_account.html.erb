@@ -13,12 +13,12 @@
   <p>性別</p>
   <div class="radio_buttons">
     <div class="gender">
-      <%= f.radio_button :gender, :male %>
-      <%= f.label :gender, "男性" %>
+      <%= f.radio_button :gender, 0 %>
+      <%= f.label :gender, "男性", value: 0 %>
     </div>
     <div class="gender">
-      <%= f.radio_button :gender, :female %>
-      <%= f.label :gender, "女性" %>
+      <%= f.radio_button :gender, 1 %>
+      <%= f.label :gender, "女性", value: 1 %>
     </div>
   </div>
 </div>

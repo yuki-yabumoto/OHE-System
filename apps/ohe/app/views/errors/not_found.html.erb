@@ -1,0 +1,12 @@
+<%#
+    File Name     : not_found.html.erb
+    Version       : v1.0
+    Designer      : 籔本悠紀
+    Purpose       : 404 Not FoundのERBテンプレート
+%>
+
+<div id="error">
+  <h1>404 Not Found</h1>
+  <p>指定されたページは見つかりません．</p>
+  <p class="url"><%= request.env["REQUEST_URI"] %></p>
+</div>

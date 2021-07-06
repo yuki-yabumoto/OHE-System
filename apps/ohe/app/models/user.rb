@@ -80,9 +80,6 @@ class User < ApplicationRecord
   validates :email, presence: true, on: :create
   validates :password, presence: true, on: :create
   validates :gender, presence: true, on: :update
-  validates :place, presence: true, on: :update
-  validates :from_time, presence: true, on: :update
-  validates :to_time, presence: true, on: :update
   validates :favorite_color, presence: true, on: :update
   validates :favorite_type, presence: true, on: :update
 
