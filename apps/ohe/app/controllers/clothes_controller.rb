@@ -67,13 +67,25 @@ class ClothesController < Base
     @clothe = Clothe.find(params[:id]);
   end
 
+  def update
+    @clothe = Clothe.find(params[:id])
+    @clothe.assign_attributes(params[:clothe])
+    if @clothe.save
+      flash.notice = "服情報を更新しました"
+      redirect_to "/clothes?"
+    else
+      flash.alert = "服情報の更新に失敗しました"
+      render action: "edit"
+    end
+  end
+
  def destroy
     clothe = Clothe.find(params[:id])
     clothe.destroy!
     if tag_map = TagMap.find_by(clothe_id: params[:id])
       tag_id = tag_map.tag_id
       tag_map.destroy!
-      if !TagMap.find_by(id: tag_id)
+      if !TagMap.find_by(tag_id: tag_id)
         Tag.find(tag_id).destroy
       end
     end
