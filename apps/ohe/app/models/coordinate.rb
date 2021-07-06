@@ -1,8 +1,8 @@
 ##
 ##  File Name        : coordinate.rb
-##  Version        : V1.3
+##  Version        : V1.4
 ##  Designer        : 京増ほのか
-##  Date        : 2021.07.05
+##  Date        : 2021.07.06
 ##  Purpose           : コーディネート提案
 ##
 
