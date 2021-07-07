@@ -19,7 +19,7 @@
       <th>ボトム</th>
       <th>アクセサリー</th>
     </tr>
-    <% if @coordinates.count == 0 %>
+    <% if @coordinates.nil? || @coordinates.empty? %>
       <td colspan="6">コーディネートの履歴がありません</td>
     <% else %>
       <% @coordinates.each do |c| %>
