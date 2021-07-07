@@ -10,7 +10,7 @@
 <h1><%= @title %></h1>
 
 <div id="generic-form">
-  <%= form_with model: @clothe, url: :clothes do |f| %>
+  <%= form_with model: @clothe, url: @clothe do |f| %>
     <%= render "edit_clothe", f: f %>
     <div class="buttons">
       <%= f.submit "更新" %>
