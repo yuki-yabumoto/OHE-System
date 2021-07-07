@@ -36,7 +36,7 @@
       %>
       <tr>
         <td>トップス</td>
-          <% if tops =  Clothe.find_by(id: @coordinate.tops.id) %>
+          <% if tops =  Clothe.find_by(id: @coordinate[:tops].id) %>
           <td class="img">
             <%= image_tag tops.image.thumb.to_s %>
           </td>
@@ -51,8 +51,8 @@
 
       <tr>
         <td>アウター</td>
-          <% if @coordinate.outer != nil %>
-          <% outer = Clothe.find_by(id: @coordinate.outer.id) %>
+          <% if @coordinate[:outer] != nil %>
+          <% outer = Clothe.find_by(id: @coordinate[:outer].id) %>
             <td class="img">
               <%= image_tag outer.image.thumb.to_s %>
             </td>
@@ -67,7 +67,7 @@
 
       <tr>
         <td>ボトムス</td>
-          <% if bottoms = Clothe.find_by(id: @coordinate.bottoms.id) %>
+          <% if bottoms = Clothe.find_by(id: @coordinate[:bottoms].id) %>
             <td class="img">
               <%= image_tag bottoms.image.thumb.to_s %>
             </td>
@@ -82,7 +82,7 @@
 
       <tr>
         <td>シューズ</td>
-          <% if shoes =  Clothe.find_by(id: @coordinate.shoes.id)%>
+          <% if shoes =  Clothe.find_by(id: @coordinate[:shoes].id)%>
             <td class="img">
               <%= image_tag shoes.image.thumb.to_s %>
             </td>
@@ -97,8 +97,8 @@
 
       <tr>
         <td>アクセサリー</td>
-          <% if @coordinate.accessory != nil %>
-          <% accessory = Clothe.find_by(id: @coordinate.accessory.id) %>
+          <% if @coordinate[:accessory] != nil %>
+          <% accessory = Clothe.find_by(id: @coordinate[:accessory].id) %>
             <td class="img">
               <%= image_tag accessory.image.thumb.to_s %>
             </td>
