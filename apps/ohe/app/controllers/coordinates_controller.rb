@@ -20,6 +20,7 @@ class CoordinatesController < Base
     def create
         # 天気予報を取得
         user = current_user
+        user.place = params["place"]
         user.from_time = DateTime.parse("#{params["from(1i)"]}-#{params["from(2i)"]}-#{params["from(3i)"]}T#{params["from(4i)"]}:#{params["from(5i)"]}")
         user.to_time = DateTime.parse("#{params["to(1i)"]}-#{params["to(2i)"]}-#{params["to(3i)"]}T#{params["to(4i)"]}:#{params["to(5i)"]}")
         if !user.save
