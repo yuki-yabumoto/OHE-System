@@ -9,107 +9,101 @@
 <% @title = "コーディネート" %>
 <h1><%= @title %></h1>
 
-<% if @coordinate.kind_of?(String) %>
-  <div class="error">
-    <%= @coordinate %>
-  </div>
-<% else %>
-  <div class="table-wrapper">
-    <table>
-      <tr>
-        <th>天気</th>
-        <th>気温</th>
-        <th>湿度</th>
-        </tr>
-      <tr>
-        <td><%= image_tag "weather/#{@weather[:icon]}" %></td>
-        <td><%= "#{@weather[:min_temperature]} ℃" %></td>
-        <td><%= "#{@weather[:max_humidity]} %" %></td>
+<div class="table-wrapper">
+  <table>
+    <tr>
+      <th>天気</th>
+      <th>気温</th>
+      <th>湿度</th>
       </tr>
-    </table>
-  </div>
-  <div class="table-wrapper">
-    <table>
-      <%
-        colors = %w[白 黒 赤 青 黄 緑 柄物 ベージュ]
-        types = %w[カジュアル系 ロック系 ストリート系 ガーリッシュ系]
-      %>
-      <tr>
-        <td>トップス</td>
-          <% if tops =  Clothe.find_by(id: @coordinate.tops.id) %>
+    <tr>
+      <td><%= image_tag "weather/#{@weather[:icon]}.png" %></td>
+      <td><%= "#{@weather[:min_temperature]} ℃" %></td>
+      <td><%= "#{@weather[:max_humidity]} %" %></td>
+    </tr>
+  </table>
+</div>
+<div class="table-wrapper">
+  <table>
+    <%
+      colors = %w[白 黒 赤 青 黄 緑 柄物 ベージュ]
+      types = %w[カジュアル系 ロック系 ストリート系 ガーリッシュ系]
+    %>
+    <tr>
+      <td>トップス</td>
+        <% if tops =  Clothe.find_by(id: @coordinate[:tops].id) %>
+        <td class="img">
+          <%= image_tag tops.image.thumb.to_s %>
+        </td>
+        <td class="info">
+          <p><%= "種類: #{colors[tops.color]}" %></p>
+          <p><%= " 色 : #{types[tops.type]}" %></p>
+        </td>
+        <% else %>
+          <td colspan="2"><p>なし</p></td>
+        <% end %>
+    </tr>
+
+    <tr>
+      <td>アウター</td>
+        <% if @coordinate[:outer] != nil %>
+        <% outer = Clothe.find_by(id: @coordinate[:outer].id) %>
           <td class="img">
-            <%= image_tag tops.image.thumb.to_s %>
+            <%= image_tag outer.image.thumb.to_s %>
           </td>
           <td class="info">
-            <p><%= "種類: #{colors[tops.color]}" %></p>
-            <p><%= " 色 : #{types[tops.type]}" %></p>
+            <p><%= "種類: #{colors[outer.color]}" %></p>
+            <p><%= " 色 : #{types[outer.type]}" %></p>
           </td>
-          <% else %>
-            <td colspan="2"><p>なし</p></td>
-          <% end %>
-      </tr>
+        <% else %>
+          <td colspan="2"><p>なし</p></td>
+        <% end %>
+    </tr>
 
-      <tr>
-        <td>アウター</td>
-          <% if @coordinate.outer != nil %>
-            <% outer = Clothe.find_by(id: @coordinate.outer.id) %>
-            <td class="img">
-              <%= image_tag outer.image.thumb.to_s %>
-            </td>
-            <td class="info">
-              <p><%= "種類: #{colors[outer.color]}" %></p>
-              <p><%= " 色 : #{types[outer.type]}" %></p>
-            </td>
-          <% else %>
-            <td colspan="2"><p>なし</p></td>
-          <% end %>
-      </tr>
-
-      <tr>
-        <td>ボトムス</td>
-          <% if bottoms = Clothe.find_by(id: @coordinate.bottoms.id) %>
-            <td class="img">
-              <%= image_tag bottoms.image.thumb.to_s %>
-            </td>
-            <td class="info">
-              <p><%= "種類: #{colors[bottoms.color]}" %></p>
-              <p><%= " 色 : #{types[bottoms.type]}" %></p>
-            </td>
-          <% else %>
-            <td colspan="2"><p>なし</p></td>
-          <% end %>
-      </tr>
-
-      <tr>
-        <td>シューズ</td>
-          <% if shoes =  Clothe.find_by(id: @coordinate.shoes.id)%>
-            <td class="img">
-              <%= image_tag shoes.image.thumb.to_s %>
-            </td>
+    <tr>
+      <td>ボトムス</td>
+        <% if bottoms = Clothe.find_by(id: @coordinate[:bottoms].id) %>
+          <td class="img">
+            <%= image_tag bottoms.image.thumb.to_s %>
+          </td>
           <td class="info">
-            <p><%= "種類: #{colors[shoes.color]}" %></p>
-            <p><%= " 色 : #{types[shoes.type]}" %></p>
+            <p><%= "種類: #{colors[bottoms.color]}" %></p>
+            <p><%= " 色 : #{types[bottoms.type]}" %></p>
           </td>
-          <% else %>
-            <td colspan="2"><p>なし</p></td>
-          <% end %>
-      </tr>
+        <% else %>
+          <td colspan="2"><p>なし</p></td>
+        <% end %>
+    </tr>
 
-      <tr>
-        <td>アクセサリー</td>
-          <% if @coordinate.accessory != nil %>
-            <% accessory = Clothe.find_by(id: @coordinate.accessory.id) %>
-            <td class="img">
-              <%= image_tag accessory.image.thumb.to_s %>
-            </td>
-            <td class="info">
-              <p><%= "種類: #{colors[accessory.color]}" %></p>
-              <p><%= " 色 : #{types[accessory.type]}" %></p>
-            </td>
-          <% else %>
-            <td colspan="2"><p>なし</p></td>
-          <% end %>
-      </tr>
-    </table>
-  </div>
-<% end %>
+    <tr>
+      <td>シューズ</td>
+        <% if shoes =  Clothe.find_by(id: @coordinate[:shoes].id)%>
+          <td class="img">
+            <%= image_tag shoes.image.thumb.to_s %>
+          </td>
+        <td class="info">
+          <p><%= "種類: #{colors[shoes.color]}" %></p>
+          <p><%= " 色 : #{types[shoes.type]}" %></p>
+        </td>
+        <% else %>
+          <td colspan="2"><p>なし</p></td>
+        <% end %>
+    </tr>
+
+    <tr>
+      <td>アクセサリー</td>
+        <% if @coordinate[:accessory] != nil %>
+          <% accessory = Clothe.find_by(id: @coordinate[:accessory].id) %>
+          <td class="img">
+            <%= image_tag accessory.image.thumb.to_s %>
+          </td>
+          <td class="info">
+            <p><%= "種類: #{colors[accessory.color]}" %></p>
+            <p><%= " 色 : #{types[accessory.type]}" %></p>
+          </td>
+        <% else %>
+          <td colspan="2"><p>なし</p></td>
+        <% end %>
+    </tr>
+  </table>
+</div>
