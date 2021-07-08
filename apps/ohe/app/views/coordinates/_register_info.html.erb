@@ -26,13 +26,13 @@
   <p>
     <%= f.label "外出時間" %>
     <%= f.datetime_select :from,
-        {default: Time.at(Time.current.to_i, in: '+09:00').to_datetime, minute_step: 60},
+        {default: Time.at(Time.now.to_i, in: '+09:00').to_datetime, minute_step: 60},
         minute_step: 60,class: 'form-control form-control-inline' %>
   </p>
   <p>
     <%= f.label "帰宅時間" %>
     <%= f.datetime_select :to,
-        {default: Time.at(Time.current.to_i, in: '+09:00').to_datetime, minute_step: 60},
+        {default: Time.at(Time.now.to_i, in: '+09:00').to_datetime, minute_step: 60},
         class: 'form-control form-control-inline' %>
   </p>
 </div>
