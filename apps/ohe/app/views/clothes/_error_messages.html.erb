@@ -8,7 +8,7 @@
 
 
 
-<% if model.errors.any? %>
+<% if model && model.errors.any? %>
     <div class = "alert alert-warning">
         <ul>
             <% model.errors.full_messages.each do |message| %>

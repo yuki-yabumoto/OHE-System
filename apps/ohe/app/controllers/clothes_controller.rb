@@ -40,6 +40,11 @@ class ClothesController < Base
 
     tag_name = param[:tag]
     param.delete(:tag)
+    if 10 < tag_name.length
+      flash.alert = "タグは10文字以内にしてください"
+      render action: "new"
+      return
+    end
 
     @clothe = Clothe.new(param)
     if @clothe.save
@@ -55,7 +60,7 @@ class ClothesController < Base
       redirect_to :clothes
     else
       flash.alert = "服の追加に失敗しました"
-      render action:"new"
+      render action: "new"
     end
   end
 
@@ -79,9 +84,16 @@ class ClothesController < Base
 
   def update
     @clothe = Clothe.find(params[:id])
+
     param = params[:clothe]
     tag_name = param[:tag]
     param.delete(:tag)
+    if 10 < tag_name.length
+      flash.alert = "タグは10文字以内にしてください"
+      render action: "edit"
+      return
+    end
+
     @clothe.assign_attributes(params[:clothe])
     if @clothe.save
       if !tag_name.empty? && tag_name != Tag.find(TagMap.find_by(clothe_id: params[:id]).tag_id)
