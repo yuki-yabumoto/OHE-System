@@ -35,32 +35,39 @@ class ClothesController < Base
 
   def create
     user = current_user
-    param = params[:clothe]
+    param = {}
+    if params[:clothe].nil?
+      param['kind'] = params['kind']
+      param['color'] = params['color']
+      param['type'] = params['type']
+      tag_name = params['tag']
+    else
+      param = params[:clothe]
+      tag_name = param[:tag]
+      param.delete(:tag)
+    end
     param['user_id'] = user.id
 
-    tag_name = param[:tag]
-    param.delete(:tag)
     if 10 < tag_name.length
       flash.alert = "タグは10文字以内にしてください"
       render action: "new"
-      return
-    end
-
-    @clothe = Clothe.new(param)
-    if @clothe.save
-      if tag_name
-        if !tag= Tag.find_by(name: tag_name)
-          tag = Tag.new(name: tag_name)
-          tag.save
-        end
-        tag_map = TagMap.new(clothe_id: @clothe.id, tag_id: tag.id)
-        tag_map.save
-      end
-      flash.notice = "服を追加しました"
-      redirect_to :clothes
     else
-      flash.alert = "服の追加に失敗しました"
-      render action: "new"
+      @clothe = Clothe.new(param)
+      if @clothe.save
+        if tag_name
+          if !tag= Tag.find_by(name: tag_name)
+            tag = Tag.new(name: tag_name)
+            tag.save
+          end
+          tag_map = TagMap.new(clothe_id: @clothe.id, tag_id: tag.id)
+          tag_map.save
+        end
+        flash.notice = "服を追加しました"
+        redirect_to :clothes
+      else
+        flash.alert = "服の追加に失敗しました"
+        render action: "new"
+      end
     end
   end
 
@@ -91,28 +98,27 @@ class ClothesController < Base
     if 10 < tag_name.length
       flash.alert = "タグは10文字以内にしてください"
       render action: "edit"
-      return
-    end
-
-    @clothe.assign_attributes(params[:clothe])
-    if @clothe.save
-      if !tag_name.empty? && tag_name != Tag.find(TagMap.find_by(clothe_id: params[:id]).tag_id)
-        destroy_tag(params[:id])
-        if tag = Tag.find_by(name: tag_name)
-          tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
-          tag_map.save
-        else
-          tag = Tag.new(name: tag_name)
-          tag.save
-          tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
-          tag_map.save
-        end
-      end
-      flash.notice = "服情報を更新しました"
-      redirect_to "/clothes?"
     else
-      flash.alert = "服情報の更新に失敗しました"
-      render action: "edit"
+      @clothe.assign_attributes(params[:clothe])
+      if @clothe.save
+        if !tag_name.empty? && tag_name != Tag.find(TagMap.find_by(clothe_id: params[:id]).tag_id)
+          destroy_tag(params[:id])
+          if tag = Tag.find_by(name: tag_name)
+            tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
+            tag_map.save
+          else
+            tag = Tag.new(name: tag_name)
+            tag.save
+            tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
+            tag_map.save
+          end
+        end
+        flash.notice = "服情報を更新しました"
+        redirect_to "/clothes?"
+      else
+        flash.alert = "服情報の更新に失敗しました"
+        render action: "edit"
+      end
     end
   end
 
