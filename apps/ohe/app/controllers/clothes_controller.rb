@@ -16,9 +16,17 @@ class ClothesController < Base
     if params['kind'] && !params['kind'].empty? then param['kind'] = params['kind'] end
     if params['color'] && !params['color'].empty? then param['color'] = params['color'] end
     if params['type'] && !params['type'].empty? then param['type'] = params['type'] end
-    if params['tag_id'] && !params['tag_id'].empty? then param['id'] = TagMap.where(tag_id: params['tag_id']) end
 
+    if params['tag_id'] && !params['tag_id'].empty?
+      clothe_ids = []
+      TagMap.where(user_id: user.id, tag_id: params['tag_id']).each do | tag_map |
+        clothe_ids.push(tag_map.clothe_id)
+      end
+      param['id'] = clothe_ids
+      @clothes = Clothe.where(param)
+    end
     @clothes = Clothe.where(param)
+
     @clothes = @clothes.page(params[:page])
 
     # 画面に表示するタグのリストを作成
