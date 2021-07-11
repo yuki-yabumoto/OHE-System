@@ -23,9 +23,17 @@ class ClothesController < Base
 
     # 画面に表示するタグのリストを作成
     @tag_list = [["選択してください", nil]]
-    Tag.all.order('name').each do |tag|
-      @tag_list.push([ tag.name, tag.id ])
+    if user_tag_maps = TagMap.where(user_id: user.id)
+      tag_ids = []
+      user_tag_maps.each do | tag_map |
+        tag_ids.push(tag_map.tag_id)
+      end
+      user_tags = Tag.order('name').where(id: tag_ids)
+      user_tags.each do |tag|
+        @tag_list.push([ tag.name, tag.id ])
+      end
     end
+
     render action: "index"
   end
 
@@ -59,7 +67,7 @@ class ClothesController < Base
             tag = Tag.new(name: tag_name)
             tag.save
           end
-          tag_map = TagMap.new(clothe_id: @clothe.id, tag_id: tag.id)
+          tag_map = TagMap.new(user_id: user.id, clothe_id: @clothe.id, tag_id: tag.id)
           tag_map.save
         end
         flash.notice = "服を追加しました"
@@ -103,13 +111,14 @@ class ClothesController < Base
       if @clothe.save
         if !tag_name.empty? && tag_name != Tag.find(TagMap.find_by(clothe_id: params[:id]).tag_id)
           destroy_tag(params[:id])
+          user = current_user
           if tag = Tag.find_by(name: tag_name)
-            tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
+            tag_map = TagMap.new(user_id: user.id, clothe_id: params[:id], tag_id: tag.id)
             tag_map.save
           else
             tag = Tag.new(name: tag_name)
             tag.save
-            tag_map = TagMap.new(clothe_id: params[:id], tag_id: tag.id)
+            tag_map = TagMap.new(user_id: user.id, clothe_id: params[:id], tag_id: tag.id)
             tag_map.save
           end
         end
@@ -126,13 +135,6 @@ class ClothesController < Base
     clothe = Clothe.find(params[:id])
     clothe.destroy!
     destroy_tag(params[:id])
-    # if tag_map = TagMap.find_by(clothe_id: params[:id])
-    #   tag_id = tag_map.tag_id
-    #   tag_map.destroy!
-    #   if !TagMap.find_by(tag_id: tag_id)
-    #     Tag.find(tag_id).destroy
-    #   end
-    # end
     flash.notice = "服を削除しました"
     redirect_to :clothes
   end
