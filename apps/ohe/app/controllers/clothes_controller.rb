@@ -12,11 +12,12 @@ class ClothesController < Base
     param = {}
     param['user_id'] = user.id
 
-    # 絞込み条件を抽出
+    # 絞込み条件をパラメーターから抽出
     if params['kind'] && !params['kind'].empty? then param['kind'] = params['kind'] end
     if params['color'] && !params['color'].empty? then param['color'] = params['color'] end
     if params['type'] && !params['type'].empty? then param['type'] = params['type'] end
 
+    # タグによる絞り込みの条件を追加
     if params['tag_id'] && !params['tag_id'].empty?
       clothe_ids = []
       TagMap.where(user_id: user.id, tag_id: params['tag_id']).each do | tag_map |
@@ -30,7 +31,7 @@ class ClothesController < Base
     @clothes = @clothes.page(params[:page])
 
     # 画面に表示するタグのリストを作成
-    @tag_list = [["選択してください", nil]]
+    @tag_list = [["指定なし", nil]]
     if user_tag_maps = TagMap.where(user_id: user.id)
       tag_ids = []
       user_tag_maps.each do | tag_map |
