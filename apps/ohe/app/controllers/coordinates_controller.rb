@@ -33,6 +33,7 @@ class CoordinatesController < Base
             @coordinate = Coordinate.new
             @coordinate = @coordinate.suggest(@weather[:min_temperature], @weather[:max_humidity] \
                                     , @weather[:weather], user.id)
+            logger.error("===================== coordinate suggested!!!!!! ======================")
             if @coordinate.kind_of?(String)
                 # エラーが起きた時はflashで通知
                 flash.alert = @coordinate
@@ -47,6 +48,7 @@ class CoordinatesController < Base
                 param['shoes'] = @coordinate[:shoes] != nil ? @coordinate[:shoes].id : nil
                 param['accessory'] = @coordinate[:accessory] != nil ? @coordinate[:accessory].id : nil
                 c = Coordinate.new(param)
+                logger.error("================== coordinate new was succeeded!!! =============")
                 c.save
                 render action: "show"
             end
