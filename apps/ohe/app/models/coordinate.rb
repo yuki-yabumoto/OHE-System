@@ -8,7 +8,12 @@
 
 class Coordinate < ApplicationRecord
     
-    belongs_to :user, class_name: "User", foreign_key: "user_id"
+    belongs_to :user, class_name: "User", foreign_key: "user_id", optional: true
+    belongs_to :clothes, class_name: "Clothe", foreign_key: "tops", optional: true
+    belongs_to :clothes, class_name: "Clothe", foreign_key: "bottoms", optional: true
+    belongs_to :clothes, class_name: "Clothe", foreign_key: "outer", optional: true
+    belongs_to :clothes, class_name: "Clothe", foreign_key: "shoes", optional: true
+    belongs_to :clothes, class_name: "Clothe", foreign_key: "accessory", optional: true
 
     private def voting(i, j, k, l, m, coordination_option, tops, bottoms, outer, shoes, accessory, favorite_color, favorite_type)
 
