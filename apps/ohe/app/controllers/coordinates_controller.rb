@@ -1,6 +1,6 @@
 ##
 ##  File Name       : coordinates_controller.rb
-##  Version         : V1.1
+##  Version         : v1.1
 ##  Designer        : 中馬，籔本
 ##  Date            : 2021.07.03
 ##  Purpose         : コーディネートコントローラー
@@ -49,8 +49,12 @@ class CoordinatesController < Base
                 param['accessory'] = @coordinate[:accessory] != nil ? @coordinate[:accessory].id : nil
                 c = Coordinate.new(param)
                 logger.error("================== coordinate new was succeeded!!! =============")
-                c.save
-                render action: "show"
+                if c.save
+                    render action: "show"
+                else
+                    flash.alert = "コーディネートの保存に失敗しました．時間をおいて再度やり直してください"
+                    render "top/index"
+                end
             end
         end
     end
